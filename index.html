@@ -786,24 +786,90 @@
                                 <img src="${p.image_url}" class="w-full h-full object-cover"/>
                             </div>
                         </div>
-                        <div class="lg:col-span-5 flex flex-col gap-8 sticky top-32 h-fit">
-                            <div class="space-y-4">
-                                <span class="font-label-caps text-secondary dark:text-blue-400 tracking-widest uppercase">${p.category || 'Limited Edition'}</span>
-                                <h1 class="font-display-xl text-5xl md:text-6xl text-on-surface dark:text-white uppercase leading-none">${p.name}</h1>
-                                <p class="font-body-lg text-on-surface-variant dark:text-zinc-400 max-w-md">${p.description || 'A premium garment crafted for excellence.'}</p>
-                                <div class="pt-4"><span class="font-headline-lg text-headline-lg text-primary dark:text-red-400">₹${p.price}</span></div>
+                        <div class="lg:col-span-5 flex flex-col gap-8 sticky top-24 h-fit">
+                            <!-- Category & Title -->
+                            <div class="space-y-3">
+                                <span class="text-xs font-black uppercase tracking-[0.3em] text-primary">${p.category || 'Limited Edition'}</span>
+                                <h1 class="font-bold text-4xl md:text-5xl dark:text-white uppercase leading-none">${p.name}</h1>
+                                <p class="text-zinc-500 dark:text-zinc-400">${p.description || 'A premium garment crafted for excellence.'}</p>
+                                <div class="text-3xl font-black text-primary">₹${p.price}</div>
                             </div>
-                            <div class="flex flex-col gap-4">
-                                <button onclick="addToCart('${p.id}')" class="bg-secondary text-white font-bold py-6 rounded-2xl flex items-center justify-center gap-3 hover:scale-[1.02] transition-transform active:scale-95 uppercase">
+
+                            <!-- Size Selector -->
+                            <div>
+                                <p class="text-xs font-black uppercase tracking-widest text-zinc-400 mb-3">Select Size</p>
+                                <div class="flex gap-3" id="detail-size-selector">
+                                    ${['S', 'M', 'L', 'XL'].map((sz, i) => `
+                                        <button onclick="selectDetailSize('${sz}')" id="detail-size-${sz}"
+                                            class="w-12 h-12 rounded-xl border-2 font-bold text-sm transition-all ${i === 1 ? 'border-primary bg-primary text-white' : 'border-zinc-200 dark:border-zinc-700 dark:text-zinc-300 hover:border-primary'}">
+                                            ${sz}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                            </div>
+
+                            <!-- Add to Bag -->
+                            <div class="flex flex-col gap-3">
+                                <button onclick="addToCart('${p.id}')" class="bg-primary text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 hover:opacity-90 transition-opacity uppercase tracking-widest">
                                     ADD TO BAG <span class="material-symbols-outlined">shopping_bag</span>
                                 </button>
-                                <button onclick="history.back()" class="text-zinc-500 dark:text-zinc-400 hover:text-primary transition-colors flex items-center justify-center gap-2 uppercase tracking-widest font-bold text-xs">
-                                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back
+                                <button onclick="history.back()" class="text-zinc-400 dark:text-zinc-500 hover:text-primary transition-colors flex items-center justify-center gap-2 uppercase tracking-widest font-bold text-xs py-2">
+                                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Collection
                                 </button>
+                            </div>
+
+                            <!-- Fabric & Fit Highlights -->
+                            <div class="border-t border-zinc-100 dark:border-zinc-800 pt-6 space-y-4">
+                                <p class="text-xs font-black uppercase tracking-widest text-zinc-400 mb-4">Fabric & Fit</p>
+                                <div class="flex items-center gap-4 text-sm dark:text-zinc-300">
+                                    <span class="material-symbols-outlined text-primary">air</span>
+                                    <span>Breathable premium cotton &amp; linen blend</span>
+                                </div>
+                                <div class="flex items-center gap-4 text-sm dark:text-zinc-300">
+                                    <span class="material-symbols-outlined text-primary">straighten</span>
+                                    <span>Relaxed oversized silhouette</span>
+                                </div>
+                                <div class="flex items-center gap-4 text-sm dark:text-zinc-300">
+                                    <span class="material-symbols-outlined text-primary">local_laundry_service</span>
+                                    <span>Machine washable, colour-safe fabric</span>
+                                </div>
+                            </div>
+
+                            <!-- Trust Strip -->
+                            <div class="grid grid-cols-3 gap-4 border-t border-zinc-100 dark:border-zinc-800 pt-6">
+                                <div class="flex flex-col items-center gap-2 text-center">
+                                    <span class="material-symbols-outlined text-[#10b981] text-2xl">local_shipping</span>
+                                    <span class="text-[10px] font-bold uppercase tracking-widest dark:text-zinc-400">Free Shipping</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-2 text-center">
+                                    <span class="material-symbols-outlined text-[#f59e0b] text-2xl">autorenew</span>
+                                    <span class="text-[10px] font-bold uppercase tracking-widest dark:text-zinc-400">Easy Returns</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-2 text-center">
+                                    <span class="material-symbols-outlined text-[#1a237e] text-2xl">lock</span>
+                                    <span class="text-[10px] font-bold uppercase tracking-widest dark:text-zinc-400">Secure Pay</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </main>
+                <script>
+                    let selectedDetailSize = 'M';
+                    function selectDetailSize(sz) {
+                        selectedDetailSize = sz;
+                        ['S','M','L','XL'].forEach(s => {
+                            const btn = document.getElementById('detail-size-' + s);
+                            if (!btn) return;
+                            if (s === sz) {
+                                btn.className = btn.className.replace('border-zinc-200 dark:border-zinc-700 dark:text-zinc-300 hover:border-primary', '');
+                                btn.classList.add('border-primary', 'bg-primary', 'text-white');
+                            } else {
+                                btn.classList.remove('border-primary', 'bg-primary', 'text-white');
+                                btn.classList.add('border-zinc-200', 'dark:border-zinc-700', 'dark:text-zinc-300', 'hover:border-primary');
+                            }
+                        });
+                    }
+                <\/script>
             `;
         }
 
