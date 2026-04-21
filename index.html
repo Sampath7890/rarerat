@@ -266,7 +266,50 @@
                 border-top: 1px solid rgba(255,255,255,0.05);
             }
         }
-    </style>
+        /* Premium Shop Enhancements */
+        .premium-grain {
+            position: relative;
+        }
+        .premium-grain::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("https://www.transparenttextures.com/patterns/pinstriped-suit.png");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .product-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .product-card:hover {
+            transform: translateY(-12px);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 30px 60px -12px rgba(153, 51, 0, 0.15);
+        }
+        .badge-rare {
+            background: #993300;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 9px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 4px 12px rgba(153, 51, 0, 0.3);
+        }
+        .price-tag {
+            background: #993300;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 14px;
+        }
 </head>
 
 <body class="selection:bg-primary-fixed selection:text-on-primary-fixed antialiased">
@@ -459,52 +502,58 @@
                         <a class="text-primary dark:text-red-400 font-bold flex items-center gap-2 group" href="#/shop">
                             View All <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
                         </a>
-                    <!-- Premium Bento Category Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pt-8">
-                        <!-- Card 1: Heritage Shirts (The Hero) -->
-                        <div onclick="location.hash='#/shop'" class="md:col-span-8 relative h-[500px] rounded-[48px] overflow-hidden group cursor-pointer border border-black/5 shadow-2xl">
-                            <img alt="Heritage Shirts" class="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-110" src="https://images.unsplash.com/photo-1594932224030-94215aba3997?auto=format&fit=crop&q=80"/>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                            <div class="absolute top-10 right-10">
-                                <span class="bg-[#FFCC99] text-[#993300] px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.4em] backdrop-blur-xl border border-white/20">Boutique Selection</span>
-                            </div>
-                            <div class="absolute bottom-12 left-12 text-white">
-                                <h3 class="font-serif text-5xl md:text-7xl mb-2 uppercase leading-none">Shirts</h3>
-                                <p class="opacity-70 tracking-[0.3em] text-xs uppercase font-bold">Italian Riviera Linens</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter">
+                        <div onclick="location.hash='#/shop'" class="md:col-span-8 relative rounded-3xl overflow-hidden group cursor-pointer border border-surface-container-highest">
+                            <img alt="Casual Tees" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="./images/casual_tee.png"/>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-8 left-8 text-white">
+                                <h3 class="text-3xl font-black uppercase tracking-tight">Casual Tees</h3>
+                                <p class="opacity-90">Everyday vibrance</p>
                             </div>
                         </div>
-
-                        <!-- Card 2: Essential Luxe -->
-                        <div onclick="location.hash='#/shop'" class="md:col-span-4 relative h-[500px] rounded-[48px] overflow-hidden group cursor-pointer border border-black/5 shadow-xl">
-                            <img alt="Luxe Essential" class="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-110" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80"/>
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#993300]/60 via-transparent to-transparent"></div>
-                            <div class="absolute bottom-10 left-10 text-white">
-                                <h3 class="font-serif text-4xl mb-2 uppercase">Essential</h3>
-                                <p class="opacity-80 tracking-widest text-[10px] uppercase font-bold">Premium Heavy Cotton</p>
+                        <div class="md:col-span-4 flex flex-col gap-grid-gutter">
+                            <div onclick="location.hash='#/shop'" class="flex-1 relative rounded-3xl overflow-hidden group cursor-pointer border border-surface-container-highest dark:border-zinc-800 h-[300px] md:h-auto">
+                                <img alt="Shirts" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="./images/shirt.png"/>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-6 left-6 text-white">
+                                    <h3 class="text-xl font-black uppercase tracking-tight">Shirts</h3>
+                                    <p class="text-sm opacity-90">Boutique Selection</p>
+                                </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Card 3: Seasonal Outerwear -->
-                        <div onclick="location.hash='#/shop'" class="md:col-span-4 relative h-[450px] rounded-[48px] overflow-hidden group cursor-pointer border border-black/5 shadow-xl">
-                            <img alt="Outerwear" class="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-110" src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&q=80"/>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                            <div class="absolute bottom-10 left-10 text-white">
-                                <h3 class="font-serif text-4xl mb-1 uppercase">Outerwear</h3>
-                                <p class="opacity-80 tracking-widest text-[10px] uppercase font-bold">Artisanal Drops</p>
+                    <!-- Secondary Category Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter mt-grid-gutter">
+                        <div class="md:col-span-4 flex flex-col gap-grid-gutter">
+                            <div onclick="location.hash='#/shop'" class="flex-1 relative rounded-3xl overflow-hidden group cursor-pointer border border-surface-container-highest dark:border-zinc-800 h-[300px] md:h-auto">
+                                <img alt="Formal Pants" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&q=80"/>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-6 left-6 text-white">
+                                    <h3 class="text-xl font-black uppercase tracking-tight">Formal Pants</h3>
+                                    <p class="text-sm opacity-90">Executive Precision</p>
+                                </div>
                             </div>
                         </div>
+                        <div onclick="location.hash='#/shop'" class="md:col-span-8 relative rounded-3xl overflow-hidden group cursor-pointer border border-surface-container-highest">
+                            <img alt="Jackets" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="./images/jacket.png"/>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-8 left-8 text-white">
+                                <h3 class="text-3xl font-black uppercase tracking-tight">Jackets</h3>
+                                <p class="opacity-90">Outerwear Mastery</p>
+                            </div>
+                        </div>
+                    </div>
 
-                        <!-- Card 4: Tailored Trousers -->
-                        <div onclick="location.hash='#/shop'" class="md:col-span-8 relative h-[450px] rounded-[48px] overflow-hidden group cursor-pointer border border-black/5 shadow-xl">
-                            <img alt="Tailored" class="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-110" src="https://images.unsplash.com/photo-1624373666563-08242139e56a?auto=format&fit=crop&q=80"/>
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#FF8C00]/40 via-transparent to-transparent"></div>
-                            <div class="absolute top-10 left-10">
-                                <span class="bg-white/10 backdrop-blur-2xl border border-white/30 text-white px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.3em]">Heritage Fit</span>
-                            </div>
-                            <div class="absolute bottom-10 left-12 text-white">
-                                <h3 class="font-serif text-5xl mb-2 uppercase">Trousers</h3>
-                                <p class="opacity-80 tracking-widest text-[10px] uppercase font-bold">Structural Precision</p>
-                            </div>
+                    <!-- Wide Feature: Jeans -->
+                    <div onclick="location.hash='#/shop'" class="relative rounded-[40px] overflow-hidden group cursor-pointer border border-surface-container-highest mt-grid-gutter aspect-[4/3] md:aspect-[21/9]">
+                        <img alt="Premium Jeans" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://images.unsplash.com/photo-1582552938357-32b906df40cb?auto=format&fit=crop&q=80"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-12 left-12 text-white">
+                            <span class="text-primary font-black uppercase tracking-[0.4em] text-xs mb-4 block">Denim Series</span>
+                            <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-4">Premium <br/>Jeans</h3>
+                            <p class="text-lg opacity-80 max-w-md">The perfect fit, engineered with raw indigo denim for the modern silhouette.</p>
                         </div>
                     </div>
                 </section>
@@ -799,19 +848,23 @@
             const hasProducts = filteredProducts && filteredProducts.length > 0;
             const productGrid = hasProducts 
                 ? filteredProducts.map(p => `
-                    <div onclick="location.hash='#/product?id=${p.id}'" class="product-card group cursor-pointer reveal">
-                        <div class="relative overflow-hidden aspect-[3/4]">
-                            <img src="${p.image_url || 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80'}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"/>
-                            <div class="absolute top-6 left-6">
-                                <span class="badge-rare">${p.category || 'Limited'}</span>
+                    <div onclick="location.hash='#/product?id=${p.id}'" class="product-card group cursor-pointer overflow-hidden rounded-[32px] p-2">
+                        <div class="relative overflow-hidden rounded-[24px] aspect-[4/5] bg-white/50">
+                            <img src="${p.image_url || 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80'}" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"/>
+                            <div class="absolute top-4 left-4 z-10">
+                                <span class="badge-rare">Rare Rat</span>
+                            </div>
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 flex items-center justify-center">
+                                <span class="bg-white/90 backdrop-blur text-black text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">Quick View</span>
                             </div>
                         </div>
-                        <div class="p-6">
-                            <div class="flex justify-between items-start gap-4 mb-1">
-                                <h3 class="font-bold text-base md:text-lg dark:text-white uppercase tracking-tight">${p.name}</h3>
-                                <span class="font-bold text-primary">₹${p.price}</span>
+                        <div class="p-4 md:p-6 text-center">
+                            <h3 class="font-serif text-lg md:text-xl mb-1 text-[#2D2424] opacity-90">${p.name}</h3>
+                            <div class="flex flex-col items-center gap-2">
+                                <span class="text-[10px] uppercase tracking-[0.2em] text-[#993300] font-black">${p.category || 'Limited Edition'}</span>
+                                <div class="h-px w-8 bg-[#993300]/20"></div>
+                                <span class="text-xl font-black text-[#993300]">₹${p.price}</span>
                             </div>
-                            <p class="text-zinc-500 dark:text-zinc-400 text-[10px] uppercase tracking-widest font-medium">${p.description || 'Premium Tailoring'}</p>
                         </div>
                     </div>
                 `).join('')
@@ -822,16 +875,23 @@
                    </div>`;
 
             return `
-                <main class="pt-24 pb-20 px-6 max-w-[1200px] mx-auto">
-                    <section class="py-12 md:py-24 text-center">
-                        <div class="inline-block mb-6">
-                            <span class="text-[#993300] font-bold tracking-[0.6em] uppercase text-[10px]">The Rare Rat House</span>
-                            <div class="h-px w-full bg-[#993300]/30 mt-2"></div>
+                <main class="pt-24 pb-20 px-6 max-w-[1400px] mx-auto premium-grain">
+                    <section class="py-12 md:py-32 text-center relative overflow-hidden">
+                        <!-- Decorative Element -->
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 opacity-[0.03] pointer-events-none select-none">
+                            <span class="text-[20vw] font-black uppercase tracking-tighter leading-none">RAT</span>
                         </div>
-                        <h2 class="font-serif text-6xl md:text-8xl uppercase mb-8 leading-tight">Heritage<br/><span class="opacity-50 italic lowercase">Collection</span></h2>
-                        <p class="text-[#2D2424] font-medium max-w-lg mx-auto opacity-70 leading-relaxed text-sm md:text-base">Meticulously tailored menswear spanning timeless silhouettes and bold modern aesthetics. Drenched in our signature summer palette.</p>
+                        
+                        <div class="relative z-10">
+                            <div class="inline-block mb-8">
+                                <span class="text-[#993300] font-black tracking-[0.8em] uppercase text-[9px] mb-2 block">Couture Excellence</span>
+                                <div class="h-[2px] w-12 bg-[#993300] mx-auto"></div>
+                            </div>
+                            <h2 class="font-serif text-7xl md:text-[120px] uppercase mb-4 leading-[0.85] tracking-tight">The<br/><span class="italic font-light lowercase text-[#993300]/80">Heritage</span> House</h2>
+                            <p class="text-[#2D2424] font-medium max-w-lg mx-auto opacity-70 leading-relaxed text-sm md:text-base mt-8">Rare Rat presents an evolution in menswear. Where traditional tailoring meets the vibrant energy of the modern streets.</p>
+                        </div>
                     </section>
-                    <section class="sticky top-[72px] z-40 bg-[#FFCC99]/80 backdrop-blur-2xl py-6 flex flex-col md:flex-row justify-center items-center gap-6 border-y border-black/5 mb-16 shadow-sm">
+                    <section class="sticky top-[72px] z-40 bg-[#FFCC99]/80 backdrop-blur-3xl py-8 flex flex-col md:flex-row justify-center items-center gap-8 border-y border-black/5 mb-20 shadow-sm transition-all duration-500" id="shop-nav-bar">
                         <div class="flex overflow-x-auto w-full md:w-auto pb-1 md:pb-0 no-scrollbar gap-3 px-4 md:px-0">
                             ${['All', 'Shirts', 'T-Shirts', 'Pants', 'Jackets', 'Jeans'].map(cat => `
                                 <button onclick="filterShop('${cat}')" 
