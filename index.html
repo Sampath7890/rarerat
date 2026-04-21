@@ -659,14 +659,19 @@
                         <p class="text-zinc-400 text-sm">Restricted access for Rare Rat staff.</p>
                     </div>
                     <div id="admin-dashboard-section" class="hidden space-y-12">
-                        <div class="flex justify-between items-end">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                             <div>
                                 <h1 class="text-4xl font-black uppercase dark:text-white">Inventory Manager</h1>
                                 <p class="text-zinc-500 dark:text-zinc-400">Manage your premium collections</p>
                             </div>
-                            <button onclick="logoutAdmin()" class="text-zinc-400 hover:text-error transition-colors uppercase text-xs font-bold flex items-center gap-2">
-                                <span class="material-symbols-outlined text-sm">logout</span> Logout
-                            </button>
+                            <div class="flex gap-4">
+                                <button onclick="seedDatabase()" class="bg-[#993300]/10 text-[#993300] px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-[#993300] hover:text-white transition-all flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">refresh</span> Re-Seed Boutique
+                                </button>
+                                <button onclick="logoutAdmin()" class="text-zinc-400 hover:text-error transition-colors uppercase text-xs font-bold flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">logout</span> Logout
+                                </button>
+                            </div>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <div class="bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-zinc-100 dark:border-zinc-800 shadow-sm">
@@ -824,15 +829,15 @@
 
             return `
                 <main class="pt-24 pb-20 px-6 max-w-[1200px] mx-auto">
-                    <section class="py-12 md:py-20 text-center">
-                        <div class="inline-block mb-4">
-                            <span class="text-[#993300] font-bold tracking-[0.4em] uppercase text-xs">Exquisite Styles</span>
-                            <div class="h-px w-full bg-[#993300]/20 mt-1"></div>
+                    <section class="py-12 md:py-24 text-center">
+                        <div class="inline-block mb-6">
+                            <span class="text-[#993300] font-bold tracking-[0.6em] uppercase text-[10px]">The Rare Rat House</span>
+                            <div class="h-px w-full bg-[#993300]/30 mt-2"></div>
                         </div>
-                        <h2 class="font-serif text-5xl md:text-7xl uppercase mb-6">Premium Collection</h2>
-                        <p class="text-zinc-600 font-medium max-w-lg mx-auto">Luxury tailoring and essential silhouettes, curated for the modern Rare Rat enthusiast.</p>
+                        <h2 class="font-serif text-6xl md:text-8xl uppercase mb-8 leading-tight">Heritage<br/><span class="opacity-50 italic lowercase">Collection</span></h2>
+                        <p class="text-[#2D2424] font-medium max-w-lg mx-auto opacity-70 leading-relaxed text-sm md:text-base">Meticulously tailored menswear spanning timeless silhouettes and bold modern aesthetics. Drenched in our signature summer palette.</p>
                     </section>
-                    <section class="sticky top-[72px] z-40 bg-white/90 backdrop-blur-xl py-5 flex flex-col md:flex-row justify-center items-center gap-6 border-y border-black/5 mb-12">
+                    <section class="sticky top-[72px] z-40 bg-[#FFCC99]/80 backdrop-blur-2xl py-6 flex flex-col md:flex-row justify-center items-center gap-6 border-y border-black/5 mb-16 shadow-sm">
                         <div class="flex overflow-x-auto w-full md:w-auto pb-1 md:pb-0 no-scrollbar gap-3 px-4 md:px-0">
                             ${['All', 'Shirts', 'T-Shirts', 'Pants', 'Jackets', 'Jeans'].map(cat => `
                                 <button onclick="filterShop('${cat}')" 
@@ -1087,23 +1092,33 @@
         // Seeding Logic
         async function seedDatabase() {
             if (!supabaseClient) return alert('Supabase not connected!');
-            const demoProducts = [
-                { name: 'Coral Linen Riviera', price: 128, category: 'Shirts', description: 'Classic Fit Linen', image_url: 'https://images.unsplash.com/photo-1594932224030-94215aba3997?auto=format&fit=crop&q=80' },
-                { name: 'Sun-Kissed Linen', price: 145, category: 'Shirts', description: 'Boutique Summer Wear', image_url: 'https://images.unsplash.com/photo-1617137984095-74e4a5e3059f?auto=format&fit=crop&q=80' },
-                { name: 'Midnight Silk Shirt', price: 195, category: 'Shirts', description: 'Fine Evening Silk', image_url: 'https://images.unsplash.com/photo-1554560309-43d14b43a228?auto=format&fit=crop&q=80' },
-                { name: 'Champagne Linen', price: 135, category: 'Shirts', description: 'Relaxed Tailoring', image_url: 'https://images.unsplash.com/photo-1555689502-c4b22d76c56f?auto=format&fit=crop&q=80' },
-                { name: 'Electric Cobalt Tee', price: 75, category: 'T-Shirts', description: 'Heavyweight Cotton', image_url: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80' },
-                { name: 'Oversized Sand Tee', price: 85, category: 'T-Shirts', description: 'Modern Silhouette', image_url: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&q=80' },
-                { name: 'Vintage Cream Polo', price: 110, category: 'T-Shirts', description: 'Knit Texture', image_url: 'https://images.unsplash.com/photo-1626497748470-281d5c657be7?auto=format&fit=crop&q=80' },
-                { name: 'Charcoal Mesh Tee', price: 90, category: 'T-Shirts', description: 'Tech Fabric', image_url: 'https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&q=80' },
-                { name: 'Burnt Orange Essential', price: 70, category: 'T-Shirts', description: 'Signature Color', image_url: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&q=80' }
-            ];
+            if (!confirm('CAUTION: This will WIPE your current inventory and reset the shop to the Premium Rare Rat Collection. Proceed?')) return;
             
-            const { error } = await supabaseClient.from('products').insert(demoProducts);
-            if (error) console.error(error);
-            else {
-                alert('Database seeded successfully!');
+            try {
+                // Wipe current collection to fix broken images
+                const { error: delError } = await supabaseClient.from('products').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+                if (delError) throw delError;
+
+                const demoProducts = [
+                    { name: 'Sun-Kissed Linen Riviera', price: 145, category: 'Shirts', description: 'Italian Linen Blend', image_url: 'https://images.unsplash.com/photo-1594932224030-94215aba3997?auto=format&fit=crop&q=80' },
+                    { name: 'Midnight Noir Essential', price: 85, category: 'T-Shirts', description: 'Heavyweight Matte Cotton', image_url: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&q=80' },
+                    { name: 'Terracotta Summer Linen', price: 135, category: 'Shirts', description: 'Relaxed Tailoring', image_url: 'https://images.unsplash.com/photo-1617137984095-74e4a5e3059f?auto=format&fit=crop&q=80' },
+                    { name: 'Champagne Silk Overshirt', price: 175, category: 'Shirts', description: 'Premium Silk Finish', image_url: 'https://images.unsplash.com/photo-1521223344201-d169129f7b7d?auto=format&fit=crop&q=80' },
+                    { name: 'Signature Orange Tee', price: 75, category: 'T-Shirts', description: 'Rare Rat Identity Piece', image_url: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&q=80' },
+                    { name: 'Dusk Charcoal Polo', price: 110, category: 'T-Shirts', description: 'Knit Performance Fabric', image_url: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80' },
+                    { name: 'Arctic White Heavy Tee', price: 80, category: 'T-Shirts', description: 'Structural Box Fit', image_url: 'https://images.unsplash.com/photo-1554560309-43d14b43a228?auto=format&fit=crop&q=80' },
+                    { name: 'Vintage Cream Knit', price: 125, category: 'Shirts', description: 'Heritage Collection', image_url: 'https://images.unsplash.com/photo-1626497748470-281d5c657be7?auto=format&fit=crop&q=80' },
+                    { name: 'Boutique Navy Button-Down', price: 130, category: 'Shirts', description: 'Classic Versatility', image_url: 'https://images.unsplash.com/photo-1555689502-c4b22d76c56f?auto=format&fit=crop&q=80' }
+                ];
+                
+                const { error: insError } = await supabaseClient.from('products').insert(demoProducts);
+                if (insError) throw insError;
+
+                alert('🔥 Boutique restored successfully! Refreshing view...');
                 router();
+            } catch (err) {
+                console.error("Seeding Error:", err);
+                alert("Failed to restore boutique: " + err.message);
             }
         }
 
