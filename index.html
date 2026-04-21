@@ -429,7 +429,7 @@
                             View All <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
                         </a>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter h-[600px] md:h-[500px]">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter">
                         <div onclick="location.hash='#/shop'" class="md:col-span-8 relative rounded-3xl overflow-hidden group cursor-pointer border border-surface-container-highest">
                             <img alt="Casual Tees" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="./images/casual_tee.png"/>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
@@ -439,7 +439,7 @@
                             </div>
                         </div>
                         <div class="md:col-span-4 flex flex-col gap-grid-gutter">
-                            <div onclick="location.hash='#/shop'" class="flex-1 relative rounded-3xl overflow-hidden group cursor-pointer border border-surface-container-highest dark:border-zinc-800">
+                            <div onclick="location.hash='#/shop'" class="flex-1 relative rounded-3xl overflow-hidden group cursor-pointer border border-surface-container-highest dark:border-zinc-800 h-[300px] md:h-auto">
                                 <img alt="Shirts" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="./images/shirt.png"/>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                                 <div class="absolute bottom-6 left-6 text-white">
@@ -447,6 +447,39 @@
                                     <p class="text-sm opacity-90">Boutique Selection</p>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Secondary Category Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter mt-grid-gutter">
+                        <div class="md:col-span-4 flex flex-col gap-grid-gutter">
+                            <div onclick="location.hash='#/shop'" class="flex-1 relative rounded-3xl overflow-hidden group cursor-pointer border border-surface-container-highest dark:border-zinc-800 h-[300px] md:h-auto">
+                                <img alt="Formal Pants" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&q=80"/>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-6 left-6 text-white">
+                                    <h3 class="text-xl font-black uppercase tracking-tight">Formal Pants</h3>
+                                    <p class="text-sm opacity-90">Executive Precision</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div onclick="location.hash='#/shop'" class="md:col-span-8 relative rounded-3xl overflow-hidden group cursor-pointer border border-surface-container-highest">
+                            <img alt="Jackets" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="./images/jacket.png"/>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-8 left-8 text-white">
+                                <h3 class="text-3xl font-black uppercase tracking-tight">Jackets</h3>
+                                <p class="opacity-90">Outerwear Mastery</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wide Feature: Jeans -->
+                    <div onclick="location.hash='#/shop'" class="relative rounded-[40px] overflow-hidden group cursor-pointer border border-surface-container-highest mt-grid-gutter aspect-[4/3] md:aspect-[21/9]">
+                        <img alt="Premium Jeans" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&q=80"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-12 left-12 text-white">
+                            <span class="text-primary font-black uppercase tracking-[0.4em] text-xs mb-4 block">Denim Series</span>
+                            <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-4">Premium <br/>Jeans</h3>
+                            <p class="text-lg opacity-80 max-w-md">The perfect fit, engineered with raw indigo denim for the modern silhouette.</p>
                         </div>
                     </div>
                 </section>
@@ -620,6 +653,7 @@
                                     <option value="T-Shirts">T-Shirts</option>
                                     <option value="Pants">Pants</option>
                                     <option value="Jackets">Jackets</option>
+                                    <option value="Jeans">Jeans</option>
                                 </select>
                                 <div class="relative group">
                                     <input id="new-p-img" type="file" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
@@ -768,7 +802,7 @@
                     </section>
                     <section class="sticky top-[72px] z-40 bg-white dark:bg-zinc-950 backdrop-blur-xl py-4 md:py-5 flex flex-col md:flex-row justify-between items-center gap-4 border-b border-zinc-100 dark:border-zinc-900 shadow-sm">
                         <div class="flex overflow-x-auto w-full md:w-auto pb-1 md:pb-0 no-scrollbar gap-3 px-4 md:px-0">
-                            ${['All', 'Shirts', 'T-Shirts', 'Pants', 'Jackets'].map(cat => `
+                            ${['All', 'Shirts', 'T-Shirts', 'Pants', 'Jackets', 'Jeans'].map(cat => `
                                 <button onclick="filterShop('${cat}')" 
                                     class="flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm whitespace-nowrap transition-all ${activeCat === cat ? 'bg-primary text-white' : 'bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-300 hover:border-primary'}">
                                     ${cat}
