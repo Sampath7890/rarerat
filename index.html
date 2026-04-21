@@ -51,10 +51,11 @@
                         "secondary": "#1a237e",
                         "tertiary": "#b8860b",
                         "accent": "#065f46",
-                        "surface": "#FAF9F6",
-                        "background": "#F5F2E8",
-                        "on-surface": "#191c1d",
-                        "on-background": "#2D2424"
+                        "surface-container-low": "#FFF2E6",
+                        "surface": "#FFF7F0",
+                        "background": "#FF8C00",
+                        "on-background": "#FFFFFF",
+                        "on-surface": "#191c1d"
                     },
                     "borderRadius": {
                         "DEFAULT": "0.25rem",
@@ -95,24 +96,22 @@
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
 
         :root {
-            --primary: #b71422;
+            --primary: #FFFFFF;
             --secondary: #1a237e;
-            --bg-light: #FDFCF9;
-            --bg-dark: #0A0A0B;
+            --bg-light: #FF8C00;
+            --bg-dark: #cc5500;
             --surface-light: #FFFFFF;
             --surface-dark: #121214;
-            --text-light: #1A1A1A;
-            --text-dark: #F4F4F5;
-            --shadow: 0 10px 40px rgba(0,0,0,0.03);
-            --shadow-lg: 0 20px 60px rgba(0,0,0,0.08);
+            --text-light: #FFFFFF;
+            --text-dark: #FFFFFF;
+            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
         }
 
         .dark {
             --bg-light: var(--bg-dark);
             --surface-light: var(--surface-dark);
             --text-light: var(--text-dark);
-            --shadow: 0 10px 40px rgba(0,0,0,0.4);
-            --shadow-lg: 0 20px 60px rgba(0,0,0,0.6);
         }
 
         .material-symbols-outlined {
