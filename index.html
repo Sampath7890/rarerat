@@ -960,27 +960,55 @@
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
                         <div class="lg:col-span-7">
                             <div class="overflow-hidden rounded-3xl bg-white/40 shadow-2xl aspect-[4/5] relative group cursor-zoom-in" id="image-magnifier-container">
-                                <img src="${p.image_url}" id="main-product-image" class="w-full h-full object-cover transition-transform duration-500 ease-out origin-center"/>
-                                <!-- Magnifier Overlay Overlay -->
-                                <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                            </div>
-                        </div>
                         <div class="lg:col-span-5 flex flex-col gap-8 sticky top-24 h-fit">
                             <!-- Category & Title -->
-                            <div class="space-y-4">
-                                <span class="text-[#993300] font-black uppercase tracking-[0.6em] text-[10px] block">House of Rare Rat</span>
-                                <h1 class="font-serif text-5xl md:text-7xl text-[#2D2424] uppercase leading-none tracking-tight">${p.name}</h1>
-                                <p class="text-[#2D2424]/70 font-medium leading-relaxed max-w-sm">${p.description || 'A masterpiece of contemporary tailoring, curated for the modern aesthetic.'}</p>
-                                <div class="text-4xl font-black text-[#993300]">₹${p.price}</div>
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-3">
+                                    <span class="h-px w-8 bg-[#993300]/30"></span>
+                                    <span class="text-[#993300] font-black uppercase tracking-[0.5em] text-[11px]">Signature Series</span>
+                                </div>
+                                <h1 class="font-serif text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-br from-[#2D2424] via-[#993300] to-[#2D2424] uppercase leading-[0.85] tracking-tighter">${p.name}</h1>
+                                <p class="text-[#2D2424] font-serif italic text-xl opacity-80 leading-relaxed max-w-sm">${p.description || 'A masterpiece of contemporary tailoring, curated for the modern aesthetic.'}</p>
+                            </div>
+
+                            <!-- Price & Technical Details (Fills space) -->
+                            <div class="space-y-8">
+                                <div class="flex items-baseline gap-4">
+                                    <span class="text-6xl font-black text-[#993300] tracking-tighter">₹${p.price}</span>
+                                    <span class="text-sm font-bold text-[#2D2424]/30 line-through">₹${Math.round(p.price * 1.5)}</span>
+                                    <span class="bg-[#993300] text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg shadow-[#993300]/20 animate-pulse">Save 30%</span>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4 border-y border-black/5 py-8 my-4">
+                                    <div class="space-y-1">
+                                        <p class="text-[9px] font-black uppercase tracking-widest text-[#2D2424]/40">Weight</p>
+                                        <p class="text-sm font-bold text-[#2D2424]">180 GSM Premium</p>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <p class="text-[9px] font-black uppercase tracking-widest text-[#2D2424]/40">Origin</p>
+                                        <p class="text-sm font-bold text-[#2D2424]">Boutique Crafted</p>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <p class="text-[9px] font-black uppercase tracking-widest text-[#2D2424]/40">Finish</p>
+                                        <p class="text-sm font-bold text-[#2D2424]">Soft-Wash Enzyme</p>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <p class="text-[9px] font-black uppercase tracking-widest text-[#2D2424]/40">Edition</p>
+                                        <p class="text-sm font-bold text-[#2D2424]">Rare 001/500</p>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Size Selector -->
-                            <div>
-                                <p class="text-xs font-black uppercase tracking-widest text-zinc-400 mb-3">Select Size</p>
+                            <div class="space-y-6">
+                                <div class="flex justify-between items-center">
+                                    <p class="text-xs font-black uppercase tracking-widest text-[#993300]">Select Your Fit</p>
+                                    <button class="text-[10px] font-bold text-[#2D2424]/40 border-b border-black/10 hover:text-[#993300] transition-colors">Size Guide</button>
+                                </div>
                                 <div class="flex gap-4" id="detail-size-selector">
                                     ${['S', 'M', 'L', 'XL'].map((sz, i) => `
                                         <button onclick="selectDetailSize('${sz}')" id="detail-size-${sz}"
-                                            class="w-14 h-14 rounded-2xl border-2 font-black text-sm transition-all duration-300 ${sz === 'M' ? 'bg-[#993300] border-[#993300] text-white' : 'border-black/10 text-[#2D2424]/40 hover:border-[#993300]'}">
+                                            class="w-16 h-16 rounded-3xl border-2 font-black text-sm transition-all duration-500 hover:scale-110 ${sz === 'M' ? 'bg-[#993300] border-[#993300] text-white shadow-xl shadow-[#993300]/20' : 'border-black/5 text-[#2D2424]/30 hover:border-[#993300]/30'}">
                                             ${sz}
                                         </button>
                                     `).join('')}
@@ -988,14 +1016,16 @@
                             </div>
 
                             <!-- Add to Bag -->
-                            <div class="flex flex-col gap-4">
-                                <button onclick="addToCart('${p.id}')" class="bg-[#993300] text-white font-black py-6 rounded-2xl flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all uppercase tracking-[0.2em] shadow-xl shadow-[#993300]/20">
-                                    ADD TO BAG <span class="material-symbols-outlined">shopping_bag</span>
+                            <div class="flex flex-col gap-6 pt-4">
+                                <button onclick="addToCart('${p.id}')" 
+                                    class="w-full bg-[#993300] text-white font-black py-7 rounded-[2.5rem] flex items-center justify-center gap-4 hover:scale-[1.02] active:scale-95 transition-all duration-500 uppercase tracking-[0.3em] shadow-[0_20px_40px_rgba(153,51,0,0.3)] hover:shadow-[0_25px_50px_rgba(153,51,0,0.4)]">
+                                    Add to Bag <span class="material-symbols-outlined font-black">shopping_bag</span>
                                 </button>
-                                <button onclick="history.back()" class="text-[#2D2424]/50 hover:text-[#993300] transition-colors flex items-center justify-center gap-2 uppercase tracking-[0.3em] font-black text-[10px] py-2">
-                                    <span class="material-symbols-outlined text-sm">arrow_back</span> Return to Gallery
+                                <button onclick="location.hash='#/shop'" class="text-[#2D2424]/40 hover:text-[#993300] transition-colors flex items-center justify-center gap-3 uppercase tracking-widest font-black text-[10px] py-2">
+                                    <span class="material-symbols-outlined text-sm">west</span> Return to Gallery
                                 </button>
-                            </div>
+                            </div>             
+                        </div>
 
                             <!-- Fabric & Fit Highlights -->
                             <div class="border-t border-black/5 pt-8 space-y-6">
