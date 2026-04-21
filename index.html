@@ -876,35 +876,43 @@
                    </div>`;
 
             return `
-                <main class="pt-[88px] pb-32 px-6 max-w-[1400px] mx-auto premium-grain">
-                    <section class="py-12 md:py-32 text-center relative overflow-hidden">
-                        <!-- Decorative Element -->
-                        <div class="absolute top-0 left-1/2 -translate-x-1/2 opacity-[0.03] pointer-events-none select-none">
-                            <span class="text-[20vw] font-black uppercase tracking-tighter leading-none">RAT</span>
-                        </div>
-                        
-                        <div class="relative z-10">
-                            <div class="inline-block mb-8">
-                                <span class="text-[#993300] font-black tracking-[0.8em] uppercase text-[9px] mb-2 block">Couture Excellence</span>
-                                <div class="h-[2px] w-12 bg-[#993300] mx-auto"></div>
+                <main class="pt-[88px] pb-32 premium-grain">
+                    <div class="px-6 max-w-[1400px] mx-auto">
+                        <section class="py-12 md:py-32 text-center relative overflow-hidden">
+                            <!-- Decorative Element -->
+                            <div class="absolute top-0 left-1/2 -translate-x-1/2 opacity-[0.03] pointer-events-none select-none">
+                                <span class="text-[20vw] font-black uppercase tracking-tighter leading-none">RAT</span>
                             </div>
-                            <h2 class="font-serif text-7xl md:text-[120px] uppercase mb-4 leading-[0.85] tracking-tight">The<br/><span class="italic font-light lowercase text-[#993300]/80">Rare Rat</span> House</h2>
-                            <p class="text-[#2D2424] font-medium max-w-lg mx-auto opacity-70 leading-relaxed text-sm md:text-base mt-8">Rare Rat presents an evolution in menswear. Where traditional tailoring meets the vibrant energy of the modern streets.</p>
+                            
+                            <div class="relative z-10">
+                                <div class="inline-block mb-8">
+                                    <span class="text-[#993300] font-black tracking-[0.8em] uppercase text-[9px] mb-2 block">Couture Excellence</span>
+                                    <div class="h-[2px] w-12 bg-[#993300] mx-auto"></div>
+                                </div>
+                                <h2 class="font-serif text-7xl md:text-[120px] uppercase mb-4 leading-[0.85] tracking-tight">The<br/><span class="italic font-light lowercase text-[#993300]/80">Rare Rat</span> House</h2>
+                                <p class="text-[#2D2424] font-medium max-w-lg mx-auto opacity-70 leading-relaxed text-sm md:text-base mt-8">Rare Rat presents an evolution in menswear. Where traditional tailoring meets the vibrant energy of the modern streets.</p>
+                            </div>
+                        </section>
+                    </div>
+
+                    <section class="sticky top-[71px] z-[90] bg-[#FFCC99]/95 backdrop-blur-3xl py-8 border-y border-black/5 mb-20 shadow-sm transition-all duration-500" id="shop-nav-bar">
+                        <div class="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row justify-center items-center gap-8">
+                            <div class="flex overflow-x-auto w-full md:w-auto pb-1 md:pb-0 no-scrollbar gap-3 px-4 md:px-0">
+                                ${['All', 'Shirts', 'T-Shirts', 'Pants', 'Jackets', 'Jeans'].map(cat => `
+                                    <button onclick="filterShop('${cat}')" 
+                                        class="flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm whitespace-nowrap transition-all ${activeCat === cat ? 'bg-primary text-white' : 'bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-300 hover:border-primary'}">
+                                        ${cat}
+                                    </button>
+                                `).join('')}
+                            </div>
+                            <div class="text-sm font-label-caps dark:text-zinc-400">${filteredProducts?.length || 0} Items Found</div>
                         </div>
                     </section>
-                    <section class="sticky top-[71px] z-[90] bg-[#FFCC99]/95 backdrop-blur-3xl py-8 flex flex-col md:flex-row justify-center items-center gap-8 border-y border-black/5 mb-20 shadow-sm transition-all duration-500" id="shop-nav-bar">
-                        <div class="flex overflow-x-auto w-full md:w-auto pb-1 md:pb-0 no-scrollbar gap-3 px-4 md:px-0">
-                            ${['All', 'Shirts', 'T-Shirts', 'Pants', 'Jackets', 'Jeans'].map(cat => `
-                                <button onclick="filterShop('${cat}')" 
-                                    class="flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm whitespace-nowrap transition-all ${activeCat === cat ? 'bg-primary text-white' : 'bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-300 hover:border-primary'}">
-                                    ${cat}
-                                </button>
-                            `).join('')}
+
+                    <div class="px-6 max-w-[1400px] mx-auto">
+                        <div class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-12 gap-y-12 md:gap-y-20 pt-8 md:pt-16">
+                            ${productGrid}
                         </div>
-                        <div class="text-sm font-label-caps dark:text-zinc-400">${filteredProducts?.length || 0} Items Found</div>
-                    </section>
-                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-12 gap-y-12 md:gap-y-20 pt-8 md:pt-16">
-                        ${productGrid}
                     </div>
                 </main>
             `;
