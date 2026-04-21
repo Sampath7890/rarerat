@@ -956,10 +956,10 @@
                             <!-- Size Selector -->
                             <div>
                                 <p class="text-xs font-black uppercase tracking-widest text-zinc-400 mb-3">Select Size</p>
-                                <div class="flex gap-3" id="detail-size-selector">
+                                <div class="flex gap-4" id="detail-size-selector">
                                     ${['S', 'M', 'L', 'XL'].map((sz, i) => `
                                         <button onclick="selectDetailSize('${sz}')" id="detail-size-${sz}"
-                                            class="w-12 h-12 rounded-xl border-2 font-bold text-sm transition-all ${i === 1 ? 'border-primary bg-primary text-white' : 'border-zinc-200 dark:border-zinc-700 dark:text-zinc-300 hover:border-primary'}">
+                                            class="w-14 h-14 rounded-2xl border-2 font-black text-sm transition-all duration-300 ${sz === 'M' ? 'bg-[#993300] border-[#993300] text-white' : 'border-black/10 text-[#2D2424]/40 hover:border-[#993300]'}">
                                             ${sz}
                                         </button>
                                     `).join('')}
@@ -1011,24 +1011,26 @@
                         </div>
                     </div>
                 </main>
-                <script>
-                    let selectedDetailSize = 'M';
-                    function selectDetailSize(sz) {
-                        selectedDetailSize = sz;
-                        ['S','M','L','XL'].forEach(s => {
-                            const btn = document.getElementById('detail-size-' + s);
-                            if (!btn) return;
-                            if (s === sz) {
-                                btn.className = btn.className.replace('border-zinc-200 dark:border-zinc-700 dark:text-zinc-300 hover:border-primary', '');
-                                btn.classList.add('border-primary', 'bg-primary', 'text-white');
-                            } else {
-                                btn.classList.remove('border-primary', 'bg-primary', 'text-white');
-                                btn.classList.add('border-zinc-200', 'dark:border-zinc-700', 'dark:text-zinc-300', 'hover:border-primary');
-                            }
-                        });
-                    }
-                <\/script>
+
             `;
+        }
+
+        // Size Selection Logic
+        let selectedDetailSize = 'M';
+        function selectDetailSize(sz) {
+            selectedDetailSize = sz;
+            ['S', 'M', 'L', 'XL'].forEach(s => {
+                const btn = document.getElementById('detail-size-' + s);
+                if (!btn) return;
+                
+                if (s === sz) {
+                    btn.classList.remove('border-black/10', 'text-[#2D2424]/40');
+                    btn.classList.add('bg-[#993300]', 'border-[#993300]', 'text-white');
+                } else {
+                    btn.classList.remove('bg-[#993300]', 'border-[#993300]', 'text-white');
+                    btn.classList.add('border-black/10', 'text-[#2D2424]/40');
+                }
+            });
         }
 
         // Admin Functions
