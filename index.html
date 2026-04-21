@@ -129,6 +129,15 @@
 
         .font-serif { font-family: 'Playfair Display', serif; }
         
+        .logo-img {
+            height: 36px;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        @media (min-width: 768px) { .logo-img { height: 44px; } }
+        .dark .logo-img { filter: invert(1) brightness(1.5); }
+        
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-thumb { background: #E4E4E7; border-radius: 10px; }
         .dark ::-webkit-scrollbar-thumb { background: #27272A; }
