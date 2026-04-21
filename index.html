@@ -618,6 +618,8 @@
                                 <select id="new-p-cat" class="p-4 rounded-xl border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white">
                                     <option value="Shirts">Shirts</option>
                                     <option value="T-Shirts">T-Shirts</option>
+                                    <option value="Pants">Pants</option>
+                                    <option value="Jackets">Jackets</option>
                                 </select>
                                 <div class="relative group">
                                     <input id="new-p-img" type="file" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
@@ -676,8 +678,9 @@
                 if (routeKey === '/shop') {
                     container.style.opacity = '0';
                     const products = await fetchSupabaseProducts();
+                    window.allProducts = products; // Store globally for filtering
                     setTimeout(() => {
-                        container.innerHTML = renderShopPage(products);
+                        container.innerHTML = renderShopPage(products, window.activeCategory || 'All');
                         container.style.opacity = '1';
                         window.scrollTo(0, 0);
                         updateActiveLinks(hash);
@@ -724,10 +727,14 @@
             }
         }
 
-        function renderShopPage(products) {
-            const hasProducts = products && products.length > 0;
+        function renderShopPage(products, activeCat = 'All') {
+            const filteredProducts = activeCat === 'All' 
+                ? products 
+                : products.filter(p => p.category === activeCat);
+
+            const hasProducts = filteredProducts && filteredProducts.length > 0;
             const productGrid = hasProducts 
-                ? products.map(p => `
+                ? filteredProducts.map(p => `
                     <div onclick="location.hash='#/product?id=${p.id}'" class="product-card group cursor-pointer reveal">
                         <div class="relative overflow-hidden aspect-[3/4]">
                             <img src="${p.image_url || 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80'}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"/>
@@ -746,8 +753,8 @@
                 `).join('')
                 : `<div class="col-span-full py-20 text-center space-y-4">
                         <span class="material-symbols-outlined text-[64px] text-zinc-300 dark:text-zinc-800">inventory_2</span>
-                        <h3 class="text-xl font-bold dark:text-white">Your shop is empty.</h3>
-                        <p class="text-zinc-500 dark:text-zinc-400">Connect your products in the Supabase Dashboard.</p>
+                        <h3 class="text-xl font-bold dark:text-white">No items found in ${activeCat}.</h3>
+                        <p class="text-zinc-500 dark:text-zinc-400">Try browsing another collection.</p>
                    </div>`;
 
             return `
@@ -761,17 +768,28 @@
                     </section>
                     <section class="sticky top-[72px] z-40 bg-white dark:bg-zinc-950 backdrop-blur-xl py-4 md:py-5 flex flex-col md:flex-row justify-between items-center gap-4 border-b border-zinc-100 dark:border-zinc-900 shadow-sm">
                         <div class="flex overflow-x-auto w-full md:w-auto pb-1 md:pb-0 no-scrollbar gap-3 px-4 md:px-0">
-                            <button class="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-bold text-sm whitespace-nowrap">All</button>
-                            <button class="flex items-center gap-2 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-300 px-6 py-3 rounded-full font-bold text-sm">Shirts</button>
-                            <button class="flex items-center gap-2 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-300 px-6 py-3 rounded-full font-bold text-sm">T-Shirts</button>
+                            ${['All', 'Shirts', 'T-Shirts', 'Pants', 'Jackets'].map(cat => `
+                                <button onclick="filterShop('${cat}')" 
+                                    class="flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm whitespace-nowrap transition-all ${activeCat === cat ? 'bg-primary text-white' : 'bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-300 hover:border-primary'}">
+                                    ${cat}
+                                </button>
+                            `).join('')}
                         </div>
-                        <div class="text-sm font-label-caps dark:text-zinc-400">${products?.length || 0} Items Found</div>
+                        <div class="text-sm font-label-caps dark:text-zinc-400">${filteredProducts?.length || 0} Items Found</div>
                     </section>
                     <div class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-12 gap-y-12 md:gap-y-20 pt-8 md:pt-16">
                         ${productGrid}
                     </div>
                 </main>
             `;
+        }
+
+        function filterShop(cat) {
+            window.activeCategory = cat;
+            const container = document.getElementById('app-container');
+            if (container && window.allProducts) {
+                container.innerHTML = renderShopPage(window.allProducts, cat);
+            }
         }
 
         function renderProductDetailPage(p) {
