@@ -51,10 +51,10 @@
                         "secondary": "#1a237e",
                         "tertiary": "#b8860b",
                         "accent": "#065f46",
-                        "surface-container-low": "#FFF2E6",
-                        "surface": "#FFF7F0",
-                        "background": "#FF8C00",
-                        "on-background": "#FFFFFF",
+                        "surface-container-low": "#FFF9F2",
+                        "surface": "#FFFDF7",
+                        "background": "#FFCC99",
+                        "on-background": "#2D2424",
                         "on-surface": "#191c1d"
                     },
                     "borderRadius": {
@@ -96,16 +96,16 @@
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
 
         :root {
-            --primary: #FFFFFF;
+            --primary: #FF8C00;
             --secondary: #1a237e;
-            --bg-light: #FF8C00;
-            --bg-dark: #cc5500;
+            --bg-light: #FFCC99;
+            --bg-dark: #FFB347;
             --surface-light: #FFFFFF;
             --surface-dark: #121214;
-            --text-light: #FFFFFF;
+            --text-light: #2D2424;
             --text-dark: #FFFFFF;
-            --shadow: 0 10px 40px rgba(0,0,0,0.1);
-            --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+            --shadow: 0 10px 40px rgba(0,0,0,0.05);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.1);
         }
 
         .dark {
@@ -147,12 +147,12 @@
             font-weight: 700;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: #FFFFFF !important;
+            color: #2D2424 !important;
             transition: all 0.3s ease;
             position: relative;
             padding: 8px 0;
         }
-        .nav-link:hover, .nav-link.active { opacity: 0.8; }
+        .nav-link:hover, .nav-link.active { color: var(--primary); }
         .nav-link::after {
             content: '';
             position: absolute;
@@ -246,9 +246,9 @@
                 bottom: 0; 
                 left: 0; 
                 right: 0; 
-                background: rgba(255,140,0,0.95); 
+                background: rgba(255,204,153,0.95); 
                 backdrop-filter: blur(20px); 
-                border-top: 1px solid rgba(255,255,255,0.1);
+                border-top: 1px solid rgba(0,0,0,0.05);
                 z-index: 100;
                 display: flex;
                 justify-content: space-around;
@@ -265,36 +265,36 @@
 <body class="selection:bg-primary-fixed selection:text-on-primary-fixed antialiased">
 
     <header
-        class="bg-[#FF8C00]/90 backdrop-blur-xl fixed top-0 left-0 w-full z-50 border-b border-white/10 shadow-lg h-[72px] flex items-center">
+        class="bg-[#FFCC99]/90 backdrop-blur-xl fixed top-0 left-0 w-full z-50 border-b border-black/5 shadow-sm h-[72px] flex items-center">
         <div id="scroll-progress"></div>
         <nav class="flex justify-between items-center px-4 md:px-6 w-full max-w-7xl mx-auto">
             <div class="flex items-center gap-4">
                 <button
-                    class="text-white hover:scale-110 transition-transform duration-200 active:scale-95">
+                    class="text-[#2D2424] hover:scale-110 transition-transform duration-200 active:scale-95">
                     <span class="material-symbols-outlined">menu</span>
                 </button>
                 <div class="cursor-pointer flex items-center gap-2 md:gap-4 group" onclick="location.hash='#/'">
-                    <img src="./logo.png" alt="Rare Rat Logo" class="logo-img transition-transform group-hover:scale-105 brightness-0 invert" />
-                    <span class="hidden md:inline-block text-base md:text-xl font-black tracking-tighter text-white uppercase">Rare Rat</span>
+                    <img src="./logo.png" alt="Rare Rat Logo" class="logo-img transition-transform group-hover:scale-105" />
+                    <span class="hidden md:inline-block text-base md:text-xl font-black tracking-tighter text-[#2D2424] uppercase">Rare Rat</span>
                 </div>
             </div>
             <!-- Desktop Navigation -->
             <div class="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-                <a class="nav-link text-white hover:scale-110 transition-all duration-200 uppercase tracking-widest text-[10px] font-bold"
+                <a class="nav-link text-[#2D2424] hover:scale-110 transition-all duration-200 uppercase tracking-widest text-[10px] font-bold"
                     href="#/">Home</a>
-                <a class="nav-link text-white hover:scale-110 transition-all duration-200 uppercase tracking-widest text-[10px] font-bold"
+                <a class="nav-link text-[#2D2424] hover:scale-110 transition-all duration-200 uppercase tracking-widest text-[10px] font-bold"
                     href="#/shop">Shop</a>
-                <a class="nav-link text-white hover:scale-110 transition-all duration-200 uppercase tracking-widest text-[10px] font-bold"
+                <a class="nav-link text-[#2D2424] hover:scale-110 transition-all duration-200 uppercase tracking-widest text-[10px] font-bold"
                     href="#/wishlist">Wishlist</a>
             </div>
             <div class="flex items-center gap-2 md:gap-4 ml-auto">
                 <button
                     onclick="toggleDarkMode()"
-                    class="text-white hover:scale-110 transition-transform duration-200 active:scale-95 w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-white/10">
+                    class="text-[#2D2424] hover:scale-110 transition-transform duration-200 active:scale-95 w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-black/5">
                     <span id="theme-icon" class="material-symbols-outlined text-[20px] md:text-[24px]">light_mode</span>
                 </button>
                 <button
-                    class="text-white hover:scale-110 transition-transform duration-200 active:scale-95 w-9 h-9 flex items-center justify-center">
+                    class="text-[#2D2424] hover:scale-110 transition-transform duration-200 active:scale-95 w-9 h-9 flex items-center justify-center">
                     <span class="material-symbols-outlined text-[20px] md:text-[24px]">search</span>
                 </button>
                 <button onclick="location.hash='#/cart'"
@@ -1343,14 +1343,14 @@
             <span class="material-symbols-outlined text-[24px]">explore</span>
             <span class="text-[9px] font-black uppercase tracking-widest">Shop</span>
         </a>
-        <a href="#/cart" class="mobile-nav-link flex flex-col items-center gap-1 text-white p-2 transition-all">
+        <a href="#/cart" class="mobile-nav-link flex flex-col items-center gap-1 text-[#2D2424] p-2 transition-all">
             <div class="relative">
                 <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
-                <span id="mobile-cart-badge" class="absolute -top-1.5 -right-2 bg-white text-[#FF8C00] text-[8px] min-w-[16px] h-4 flex items-center justify-center rounded-full font-black">0</span>
+                <span id="mobile-cart-badge" class="absolute -top-1.5 -right-2 bg-primary text-white text-[8px] min-w-[16px] h-4 flex items-center justify-center rounded-full font-black">0</span>
             </div>
             <span class="text-[9px] font-black uppercase tracking-widest">Bag</span>
         </a>
-        <a href="#/admin" class="mobile-nav-link flex flex-col items-center gap-1 text-white p-2 transition-all">
+        <a href="#/admin" class="mobile-nav-link flex flex-col items-center gap-1 text-[#2D2424] p-2 transition-all">
             <span class="material-symbols-outlined text-[24px]">person</span>
             <span class="text-[9px] font-black uppercase tracking-widest">Admin</span>
         </a>
