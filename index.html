@@ -265,12 +265,6 @@
                 background: rgba(10,10,11,0.85); 
                 border-top: 1px solid rgba(255,255,255,0.05);
             }
-            /* Hide scrollbar but keep functionality */
-            .no-scrollbar::-webkit-scrollbar { display: none; }
-            .no-scrollbar { 
-                -ms-overflow-style: none;  
-                scrollbar-width: none;  
-            }
         }
     </style>
 </head>
@@ -835,15 +829,15 @@
 
             return `
                 <main class="pt-24 pb-20 px-6 max-w-[1200px] mx-auto">
-                    <section class="py-8 md:py-24 text-center">
-                        <div class="inline-block mb-4 md:mb-6">
-                            <span class="text-[#993300] font-bold tracking-[0.6em] uppercase text-[9px] md:text-[10px]">The Rare Rat House</span>
-                            <div class="h-px w-full bg-[#993300]/30 mt-1 md:mt-2"></div>
+                    <section class="py-12 md:py-24 text-center">
+                        <div class="inline-block mb-6">
+                            <span class="text-[#993300] font-bold tracking-[0.6em] uppercase text-[10px]">The Rare Rat House</span>
+                            <div class="h-px w-full bg-[#993300]/30 mt-2"></div>
                         </div>
-                        <h2 class="font-serif text-5xl md:text-8xl uppercase mb-4 md:mb-8 leading-[1.1] md:leading-tight">Heritage<br/><span class="opacity-50 italic lowercase">Collection</span></h2>
-                        <p class="text-[#2D2424] font-medium max-w-lg mx-auto opacity-70 leading-relaxed text-xs md:text-base">Meticulously tailored menswear spanning timeless silhouettes and bold modern aesthetics. Drenched in our signature summer palette.</p>
+                        <h2 class="font-serif text-6xl md:text-8xl uppercase mb-8 leading-tight">Heritage<br/><span class="opacity-50 italic lowercase">Collection</span></h2>
+                        <p class="text-[#2D2424] font-medium max-w-lg mx-auto opacity-70 leading-relaxed text-sm md:text-base">Meticulously tailored menswear spanning timeless silhouettes and bold modern aesthetics. Drenched in our signature summer palette.</p>
                     </section>
-                    <section class="sticky top-[72px] z-40 bg-[#FFCC99]/85 backdrop-blur-2xl py-4 md:py-6 flex flex-col md:flex-row justify-center items-center gap-6 border-y border-black/5 mb-8 md:mb-16 shadow-sm">
+                    <section class="sticky top-[72px] z-40 bg-[#FFCC99]/80 backdrop-blur-2xl py-6 flex flex-col md:flex-row justify-center items-center gap-6 border-y border-black/5 mb-16 shadow-sm">
                         <div class="flex overflow-x-auto w-full md:w-auto pb-1 md:pb-0 no-scrollbar gap-3 px-4 md:px-0">
                             ${['All', 'Shirts', 'T-Shirts', 'Pants', 'Jackets', 'Jeans'].map(cat => `
                                 <button onclick="filterShop('${cat}')" 
@@ -912,59 +906,9 @@
                                     <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Collection
                                 </button>
                             </div>
-
-                            <!-- Fabric & Fit Highlights -->
-                            <div class="border-t border-zinc-100 dark:border-zinc-800 pt-6 space-y-4">
-                                <p class="text-xs font-black uppercase tracking-widest text-zinc-400 mb-4">Fabric & Fit</p>
-                                <div class="flex items-center gap-4 text-sm dark:text-zinc-300">
-                                    <span class="material-symbols-outlined text-primary">air</span>
-                                    <span>Breathable premium cotton &amp; linen blend</span>
-                                </div>
-                                <div class="flex items-center gap-4 text-sm dark:text-zinc-300">
-                                    <span class="material-symbols-outlined text-primary">straighten</span>
-                                    <span>Relaxed oversized silhouette</span>
-                                </div>
-                                <div class="flex items-center gap-4 text-sm dark:text-zinc-300">
-                                    <span class="material-symbols-outlined text-primary">local_laundry_service</span>
-                                    <span>Machine washable, colour-safe fabric</span>
-                                </div>
-                            </div>
-
-                            <!-- Trust Strip -->
-                            <div class="grid grid-cols-3 gap-4 border-t border-zinc-100 dark:border-zinc-800 pt-6">
-                                <div class="flex flex-col items-center gap-2 text-center">
-                                    <span class="material-symbols-outlined text-[#10b981] text-2xl">local_shipping</span>
-                                    <span class="text-[10px] font-bold uppercase tracking-widest dark:text-zinc-400">Free Shipping</span>
-                                </div>
-                                <div class="flex flex-col items-center gap-2 text-center">
-                                    <span class="material-symbols-outlined text-[#f59e0b] text-2xl">autorenew</span>
-                                    <span class="text-[10px] font-bold uppercase tracking-widest dark:text-zinc-400">Easy Returns</span>
-                                </div>
-                                <div class="flex flex-col items-center gap-2 text-center">
-                                    <span class="material-symbols-outlined text-[#1a237e] text-2xl">lock</span>
-                                    <span class="text-[10px] font-bold uppercase tracking-widest dark:text-zinc-400">Secure Pay</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </main>
-                <script>
-                    let selectedDetailSize = 'M';
-                    function selectDetailSize(sz) {
-                        selectedDetailSize = sz;
-                        ['S','M','L','XL'].forEach(s => {
-                            const btn = document.getElementById('detail-size-' + s);
-                            if (!btn) return;
-                            if (s === sz) {
-                                btn.className = btn.className.replace('border-zinc-200 dark:border-zinc-700 dark:text-zinc-300 hover:border-primary', '');
-                                btn.classList.add('border-primary', 'bg-primary', 'text-white');
-                            } else {
-                                btn.classList.remove('border-primary', 'bg-primary', 'text-white');
-                                btn.classList.add('border-zinc-200', 'dark:border-zinc-700', 'dark:text-zinc-300', 'hover:border-primary');
-                            }
-                        });
-                    }
-                <\/script>
             `;
         }
 
@@ -1170,11 +1114,11 @@
                     }
                 }
                 
-                const existingIndex = currentCart.findIndex(item => item.id == productId);
+                const existingIndex = currentCart.findIndex(item => item.id == productId && item.size === window.selectedDetailSize);
                 if (existingIndex > -1) {
                     currentCart[existingIndex].quantity += 1;
                 } else {
-                    currentCart.push({ ...product, quantity: 1, size: 'M' });
+                    currentCart.push({ ...product, quantity: 1, size: window.selectedDetailSize || 'M' });
                 }
                 
                 localStorage.setItem('rare_rat_cart', JSON.stringify(currentCart));
@@ -1338,9 +1282,9 @@
             document.querySelectorAll('.mobile-nav-link').forEach(link => {
                 const href = link.getAttribute('href');
                 if (href === hash || (hash === '' && href === '#/')) {
-                    link.classList.add('text-primary', 'bg-[#FF8C00]/10', 'rounded-2xl');
+                    link.classList.add('text-primary', 'bg-red-50', 'dark:bg-red-950/30', 'rounded-2xl');
                 } else {
-                    link.classList.remove('text-primary', 'bg-[#FF8C00]/10', 'rounded-2xl');
+                    link.classList.remove('text-primary', 'bg-red-50', 'dark:bg-red-950/30', 'rounded-2xl');
                 }
             });
         }
@@ -1407,12 +1351,30 @@
         }
 
         // Initialize App
+        window.selectedDetailSize = 'M';
+        function selectDetailSize(sz) {
+            window.selectedDetailSize = sz;
+            ['S','M','L','XL'].forEach(s => {
+                const btn = document.getElementById('detail-size-' + s);
+                if (!btn) return;
+                if (s === sz) {
+                    btn.classList.add('border-primary', 'bg-primary', 'text-white');
+                    btn.classList.remove('border-zinc-200', 'dark:border-zinc-700', 'dark:text-zinc-300', 'hover:border-primary');
+                } else {
+                    btn.classList.remove('border-primary', 'bg-primary', 'text-white');
+                    btn.classList.add('border-zinc-200', 'dark:border-zinc-700', 'dark:text-zinc-300', 'hover:border-primary');
+                }
+            });
+        }
+
         window.addEventListener('hashchange', () => {
+            if (!window.location.hash.includes('/product')) window.selectedDetailSize = 'M';
             router();
             updateCartBadge();
         });
         
         window.addEventListener('load', () => {
+            window.selectedDetailSize = 'M';
             router();
             updateThemeIcon();
             updateCartBadge();
