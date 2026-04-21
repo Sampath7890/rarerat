@@ -310,10 +310,23 @@
             font-weight: 800;
             font-size: 14px;
         }
-    </style>
 </head>
 
-<body class="selection:bg-primary-fixed selection:text-on-primary-fixed antialiased">
+<body class="selection:bg-primary-fixed selection:text-on-primary-fixed antialiased overflow-x-hidden">
+
+    <!-- Cinematic Global Loader -->
+    <div id="global-loader" class="fixed inset-0 z-[1000] bg-[#FFCC99] flex flex-col items-center justify-center transition-all duration-1000 ease-in-out">
+        <div class="relative w-32 h-32 flex items-center justify-center mb-8">
+            <div class="absolute inset-0 border-2 border-[#993300]/20 rounded-full animate-ping"></div>
+            <img src="./logo.png" class="w-20 h-20 relative z-10 animate-pulse" />
+        </div>
+        <span class="font-serif text-2xl uppercase tracking-[0.5em] text-[#993300] animate-pulse">Rare Rat</span>
+        <div class="mt-4 flex gap-1">
+            <div class="w-1 h-1 bg-[#993300] rounded-full animate-bounce" style="animation-delay: 0s"></div>
+            <div class="w-1 h-1 bg-[#993300] rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+            <div class="w-1 h-1 bg-[#993300] rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+        </div>
+    </div>
 
     <header
         class="bg-[#FFCC99]/95 backdrop-blur-2xl fixed top-0 left-0 w-full z-[100] border-b border-black/5 shadow-sm h-[72px] flex items-center">
@@ -1532,10 +1545,11 @@
 
         // Initialize App
         window.addEventListener('hashchange', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             router();
             updateCartBadge();
             if (location.hash.startsWith('#/product')) {
-                setTimeout(initMagnifier, 100);
+                setTimeout(initMagnifier, 200);
             }
         });
         
@@ -1544,8 +1558,17 @@
             updateThemeIcon();
             updateCartBadge();
             if (location.hash.startsWith('#/product')) {
-                setTimeout(initMagnifier, 100);
+                setTimeout(initMagnifier, 200);
             }
+            // Hide Loader
+            setTimeout(() => {
+                const loader = document.getElementById('global-loader');
+                if (loader) {
+                    loader.style.opacity = '0';
+                    loader.style.pointerEvents = 'none';
+                    setTimeout(() => loader.remove(), 1000);
+                }
+            }, 800);
         });
 
         // Scroll Progress Handler
