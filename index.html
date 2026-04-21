@@ -946,11 +946,11 @@
                         </div>
                         <div class="lg:col-span-5 flex flex-col gap-8 sticky top-24 h-fit">
                             <!-- Category & Title -->
-                            <div class="space-y-3">
-                                <span class="text-xs font-black uppercase tracking-[0.3em] text-primary">${p.category || 'Limited Edition'}</span>
-                                <h1 class="font-bold text-4xl md:text-5xl dark:text-white uppercase leading-none">${p.name}</h1>
-                                <p class="text-zinc-500 dark:text-zinc-400">${p.description || 'A premium garment crafted for excellence.'}</p>
-                                <div class="text-3xl font-black text-primary">₹${p.price}</div>
+                            <div class="space-y-4">
+                                <span class="text-[#993300] font-black uppercase tracking-[0.6em] text-[10px] block">House of Rare Rat</span>
+                                <h1 class="font-serif text-5xl md:text-7xl text-[#2D2424] uppercase leading-none tracking-tight">${p.name}</h1>
+                                <p class="text-[#2D2424]/70 font-medium leading-relaxed max-w-sm">${p.description || 'A masterpiece of contemporary tailoring, curated for the modern aesthetic.'}</p>
+                                <div class="text-4xl font-black text-[#993300]">₹${p.price}</div>
                             </div>
 
                             <!-- Size Selector -->
@@ -967,28 +967,28 @@
                             </div>
 
                             <!-- Add to Bag -->
-                            <div class="flex flex-col gap-3">
-                                <button onclick="addToCart('${p.id}')" class="bg-primary text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 hover:opacity-90 transition-opacity uppercase tracking-widest">
+                            <div class="flex flex-col gap-4">
+                                <button onclick="addToCart('${p.id}')" class="bg-[#993300] text-white font-black py-6 rounded-2xl flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all uppercase tracking-[0.2em] shadow-xl shadow-[#993300]/20">
                                     ADD TO BAG <span class="material-symbols-outlined">shopping_bag</span>
                                 </button>
-                                <button onclick="history.back()" class="text-zinc-400 dark:text-zinc-500 hover:text-primary transition-colors flex items-center justify-center gap-2 uppercase tracking-widest font-bold text-xs py-2">
-                                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Collection
+                                <button onclick="history.back()" class="text-[#2D2424]/50 hover:text-[#993300] transition-colors flex items-center justify-center gap-2 uppercase tracking-[0.3em] font-black text-[10px] py-2">
+                                    <span class="material-symbols-outlined text-sm">arrow_back</span> Return to Gallery
                                 </button>
                             </div>
 
                             <!-- Fabric & Fit Highlights -->
-                            <div class="border-t border-zinc-100 dark:border-zinc-800 pt-6 space-y-4">
-                                <p class="text-xs font-black uppercase tracking-widest text-zinc-400 mb-4">Fabric & Fit</p>
-                                <div class="flex items-center gap-4 text-sm dark:text-zinc-300">
-                                    <span class="material-symbols-outlined text-primary">air</span>
+                            <div class="border-t border-black/5 pt-8 space-y-6">
+                                <p class="text-[10px] font-black uppercase tracking-[0.3em] text-[#993300]/60 mb-6">Fabric & Fit</p>
+                                <div class="flex items-center gap-5 text-sm text-[#2D2424] font-medium">
+                                    <span class="material-symbols-outlined text-[#993300]">air</span>
                                     <span>Breathable premium cotton &amp; linen blend</span>
                                 </div>
-                                <div class="flex items-center gap-4 text-sm dark:text-zinc-300">
-                                    <span class="material-symbols-outlined text-primary">straighten</span>
+                                <div class="flex items-center gap-5 text-sm text-[#2D2424] font-medium">
+                                    <span class="material-symbols-outlined text-[#993300]">straighten</span>
                                     <span>Relaxed oversized silhouette</span>
                                 </div>
-                                <div class="flex items-center gap-4 text-sm dark:text-zinc-300">
-                                    <span class="material-symbols-outlined text-primary">local_laundry_service</span>
+                                <div class="flex items-center gap-5 text-sm text-[#2D2424] font-medium">
+                                    <span class="material-symbols-outlined text-[#993300]">local_laundry_service</span>
                                     <span>Machine washable, colour-safe fabric</span>
                                 </div>
                             </div>
