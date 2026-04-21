@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="theme-color" content="#f8f9fa">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Rare Rat | Premium Colorful Menswear</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#FFF9E6",
+                        "inverse-surface": "#2e3132",
+                        "on-error-container": "#93000a",
+                        "primary": "#b71422",
+                        "on-tertiary-fixed-variant": "#3e4c00",
+                        "secondary-fixed-dim": "#b6c4ff",
+                        "tertiary-fixed-dim": "#b5d249",
+                        "on-primary-container": "#fffbff",
+                        "tertiary-container": "#677d00",
+                        "surface-container-highest": "#f2ecd9",
+                        "on-background": "#191c1d",
+                        "surface-variant": "#f2ecd9",
+                        "on-tertiary-fixed": "#171e00",
+                        "inverse-on-surface": "#f0f1f2",
+                        "primary-container": "#db3237",
+                        "secondary": "#0041c9",
+                        "surface": "#FFFDF5",
+                        "on-secondary-container": "#e4e7ff",
+                        "primary-fixed": "#ffdad7",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#FFFDF5",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#0356ff",
+                        "primary": "#b71422",
+                        "secondary": "#1a237e",
+                        "tertiary": "#b8860b",
+                        "accent": "#065f46",
+                        "surface": "#FAF9F6",
+                        "background": "#F5F2E8",
+                        "on-surface": "#191c1d",
+                        "on-background": "#2D2424"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "grid-margin": "40px",
+                        "stack-sm": "4px",
+                        "grid-gutter": "24px",
+                        "stack-lg": "24px",
+                        "section-padding": "80px",
+                        "base": "8px",
+                        "stack-md": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Outfit", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "display-xl": ["Outfit", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "label-caps": ["Inter", "sans-serif"],
+                        "headline-md": ["Outfit", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["36px", { "lineHeight": "1.1", "fontWeight": "800" }],
+                        "headline-lg": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-md": ["18px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "fontWeight": "600", "letterSpacing": "0.1em" }]
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        body {
+            min-height: 100dvh;
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom Minimalist Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 10px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #3f3f46;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+
+        #scroll-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            background: #b71422;
+            width: 0%;
+            transition: width 0.1s ease-out;
+        }
+
+        /* Dark mode custom background */
+        .dark body {
+            background-color: #0c0d0e;
+        }
+        .dark .bg-surface {
+            background-color: #0c0d0e;
+        }
+        .dark .bg-white {
+            background-color: #121416;
+        }
+
+        .logo-img {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        @media (min-width: 768px) {
+            .logo-img { height: 40px; }
+        }
+
+        .dark .logo-img {
+            filter: invert(1) brightness(2);
+        }
+
+        /* Mobile specific overrides */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #b71422;
+            transition: width 0.3s ease;
+        }
+        .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link.active {
+            color: #b71422 !important;
+            transform: translateY(-1px);
+        }
+
+        .product-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .product-card:hover img {
+            scale: 1.05;
+        }
+
+        .badge-limited {
+            background: linear-gradient(135deg, #b71422 0%, #1a237e 100%);
+            box-shadow: 0 4px 12px rgba(26, 35, 126, 0.3);
+        }
+
+        .bg-linen { background-color: #F5F2E8; }
+        .bg-indigo-gradient { background: linear-gradient(135deg, #1a237e 0%, #0d123f 100%); }
+        .bg-ruby-gradient { background: linear-gradient(135deg, #b71422 0%, #7f0e17 100%); }
+        .text-gold { color: #b8860b; }
+        .border-gold { border-color: #b8860b; }
+        
+        .hero-gradient {
+            background: radial-gradient(circle at 70% 30%, rgba(183, 20, 34, 0.05), transparent),
+                        radial-gradient(circle at 20% 80%, rgba(26, 35, 126, 0.05), transparent);
+        }
+        
+        .fade-slide-up {
+            animation: fadeSlideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 768px) {
+            .container { padding-left: 20px; padding-right: 20px; }
+            h1 { font-size: 2.5rem !important; line-height: 1.1 !important; }
+            .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed antialiased">
+
+    <header
+        class="bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md fixed top-0 left-0 w-full z-50 border-b border-zinc-100 dark:border-zinc-800 shadow-[0_4px_20px_rgb(0,0,0,0.03)] h-[64px] md:h-auto flex items-center">
+        <div id="scroll-progress"></div>
+        <nav class="flex justify-between items-center px-4 md:px-6 w-full max-w-7xl mx-auto">
+            <div class="flex items-center gap-4">
+                <button
+                    class="text-zinc-500 dark:text-zinc-400 hover:scale-110 transition-transform duration-200 active:scale-95">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <div class="cursor-pointer flex items-center gap-2 md:gap-4 group" onclick="location.hash='#/'">
+                    <img src="./logo.png" alt="Rare Rat Logo" class="logo-img transition-transform group-hover:scale-105" />
+                    <span class="hidden md:inline-block text-base md:text-xl font-black tracking-tighter text-neutral-800 dark:text-neutral-100 uppercase">Rare Rat</span>
+                </div>
+            </div>
+            <!-- Desktop Navigation (Hidden on Mobile) -->
+            <div class="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+                <a class="nav-link text-zinc-500 dark:text-zinc-400 hover:scale-110 transition-all duration-200 uppercase tracking-widest text-[10px] font-bold"
+                    href="#/">Home</a>
+                <a class="nav-link text-zinc-500 dark:text-zinc-400 hover:scale-110 transition-all duration-200 uppercase tracking-widest text-[10px] font-bold"
+                    href="#/shop">Shop</a>
+                <a class="nav-link text-zinc-500 dark:text-zinc-400 hover:scale-110 transition-all duration-200 uppercase tracking-widest text-[10px] font-bold"
+                    href="#/wishlist">Wishlist</a>
+            </div>
+            <div class="flex items-center gap-2 md:gap-4 ml-auto">
+                <button
+                    onclick="toggleDarkMode()"
+                    class="text-zinc-500 dark:text-zinc-400 hover:scale-110 transition-transform duration-200 active:scale-95 w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800">
+                    <span id="theme-icon" class="material-symbols-outlined text-[20px] md:text-[24px]">light_mode</span>
+                </button>
+                <button
+                    class="text-zinc-500 dark:text-zinc-400 hover:scale-110 transition-transform duration-200 active:scale-95 w-9 h-9 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[20px] md:text-[24px]">search</span>
+                </button>
+                <button onclick="location.hash='#/cart'"
+                    class="text-zinc-500 dark:text-zinc-400 hover:scale-110 transition-transform duration-200 active:scale-95 w-9 h-9 flex items-center justify-center relative">
+                    <span class="material-symbols-outlined text-[20px] md:text-[24px]">shopping_bag</span>
+                    <span id="cart-count"
+                        class="absolute top-0 right-0 bg-secondary text-white text-[9px] md:text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold hidden">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="app-container" class="fade-in">
+        <!-- Content will be injected here -->
+    </main>
+
+
+    <footer class="bg-zinc-950 text-white pt-20">
+        <div class="bg-indigo-gradient py-1"></div>
+        <div class="container mx-auto px-grid-margin py-20">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="col-span-1 md:col-span-1 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <img src="./logo.png" class="w-12 h-12 filter brightness-0 invert" />
+                        <span class="text-2xl font-black uppercase tracking-tighter">Rare Rat</span>
+                    </div>
+                    <p class="text-zinc-400 text-sm italic">"Redefining modern menswear with bold colors and impeccable craftsmanship."</p>
+                </div>
+                <div class="space-y-4">
+                    <h5 class="font-bold text-white uppercase text-xs tracking-widest">Collections</h5>
+                    <ul class="text-zinc-400 space-y-2 text-sm">
+                        <li class="hover:text-gold cursor-pointer transition-colors">Summer Linen</li>
+                        <li class="hover:text-gold cursor-pointer transition-colors">Executive Shirts</li>
+                        <li class="hover:text-gold cursor-pointer transition-colors">Cobalt Tees</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h5 class="font-bold text-white uppercase text-xs tracking-widest">Client Care</h5>
+                    <ul class="text-zinc-400 space-y-2 text-sm">
+                        <li class="hover:text-gold cursor-pointer transition-colors">Shipping Policy</li>
+                        <li class="hover:text-gold cursor-pointer transition-colors">Returns & Exchange</li>
+                        <li class="hover:text-gold cursor-pointer transition-colors" onclick="window.open('https://wa.me/918125740252?text=Hello%20Rare%20Rat%20Support,%20I%20have%20a%20question.', '_blank')">WhatsApp Support</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h5 class="font-bold text-white uppercase text-xs tracking-widest">Brand</h5>
+                    <p class="text-zinc-400 text-sm">
+                        Curating premium identity<br />
+                        Since 2026.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-zinc-800 py-10 px-12 flex flex-col md:flex-row justify-between items-center gap-4 bg-black/50">
+            <p class="text-zinc-500 text-[10px] uppercase tracking-[0.2em]">© 2026 Rare Rat Menswear. Established in 2026.</p>
+            <div class="flex gap-8 text-[10px] text-zinc-500 uppercase tracking-widest">
+                <span class="hover:text-white cursor-pointer transition-colors">Privacy Policy</span>
+                <span class="hover:text-white cursor-pointer transition-colors">Terms of Service</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Navigation -->
+    <div
+        class="md:hidden fixed bottom-0 left-0 w-full z-50 border-t bg-surface dark:bg-zinc-900/95 backdrop-blur-lg border-zinc-100 dark:border-zinc-800 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] pb-safe">
+        <div class="flex justify-around items-center h-16">
+            <a class="mobile-nav-link flex flex-col items-center justify-center text-zinc-400 w-1/3 h-full" href="#/">
+                <span class="material-symbols-outlined text-[28px]">home</span>
+                <span class="text-[10px] font-bold uppercase tracking-widest mt-0.5">Home</span>
+            </a>
+            <a class="mobile-nav-link flex flex-col items-center justify-center text-zinc-400 w-1/3 h-full" href="#/shop">
+                <span class="material-symbols-outlined text-[28px]">storefront</span>
+                <span class="text-[10px] font-bold uppercase tracking-widest mt-0.5">Shop</span>
+            </a>
+            <a class="mobile-nav-link flex flex-col items-center justify-center text-zinc-400 w-1/3 h-full"
+                href="#/wishlist">
+                <span class="material-symbols-outlined text-[28px]">favorite</span>
+                <span class="text-[10px] font-bold uppercase tracking-widest mt-0.5">Wish</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Supabase Configuration
+        const SUPABASE_URL = 'https://vtmhwfvifxtyjngjazxe.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ0bWh3ZnZpZnh0eWpuZ2phenhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3NTQwMjIsImV4cCI6MjA5MjMzMDAyMn0.fpIeovPu_BUfJGzO7mtX9GBnNHHRvDH3NwivD4_bctA';
+        
+        let supabaseClient = null;
+        if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+            supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        }
+
+        async function fetchSupabaseProducts() {
+            if (!supabaseClient) return null;
+            const { data, error } = await supabaseClient.from('products').select('*');
+            if (error) {
+                console.error('Error fetching products:', error);
+                return null;
+            }
+            return data;
+        }
+
+        const routes = {
+            '/': {
+                title: 'Home',
+                template: `
+                <!-- Hero Section -->
+                <section class="relative h-[707px] min-h-[600px] w-full flex items-center overflow-hidden pt-20 hero-gradient">
+                    <div class="absolute inset-0 z-0">
+                        <img alt="Men's colorful fashion" class="w-full h-full object-cover opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPn6t5RvyVauPKXu62FG5YB2xkUaDRb_LPYFYN0xnjLy7aqGwSYR9Wg7axQuFg1Zm8iHvZ08su1lAmRUR7f6EHapGE75bOatjNAtmhybxWIQCf4ygKR2gWQ9v901j1Ym-wpYXHl7YUjKh2goYw-0Z0JbMQeNk6h7qYn9gjILwxk_T-V6h_1TewShKbHXrGnXRS_lgGEk9aPeLEowjfiDW0oMxJ0vLhRApBk6rgGzEUVeMQzONyTSmWLvOuhkfI-QmspiFHV8ASBXw"/>
+                        <div class="absolute inset-0 bg-gradient-to-r from-orange-50/90 via-white/40 to-transparent dark:from-zinc-950 dark:via-zinc-900/60 dark:to-transparent"></div>
+                    </div>
+                    <div class="container mx-auto px-grid-margin relative z-10">
+                        <div class="max-w-2xl space-y-stack-lg">
+                            <h1 class="text-4xl md:text-6xl lg:text-7xl font-display-xl text-on-background dark:text-white uppercase leading-none">
+                                Drench Your <br/> <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary italic">Style in Color</span>
+                            </h1>
+                            <p class="font-body-lg text-body-lg text-on-surface-variant dark:text-zinc-400 max-w-lg">
+                                Meticulously crafted linen and cotton shirts from the **Rare Rat** boutique. Bold aesthetics for the modern man.
+                            </p>
+                            <div class="flex gap-stack-md pt-4">
+                                <button onclick="location.hash='#/shop'" class="bg-indigo-gradient text-white px-12 py-5 rounded-2xl font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-2xl shadow-indigo-500/20">
+                                    Browse Inventory
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Category Grid -->
+                <section class="py-section-padding px-grid-margin container mx-auto">
+                    <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+                        <div>
+                            <h2 class="font-headline-lg text-headline-lg dark:text-white">Shop by Category</h2>
+                            <p class="text-zinc-500 dark:text-zinc-400">Curated styles for every occasion</p>
+                        </div>
+                        <a class="text-primary dark:text-red-400 font-bold flex items-center gap-2 group" href="#/shop">
+                            View All <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter h-[600px] md:h-[500px]">
+                        <div onclick="location.hash='#/shop'" class="md:col-span-8 relative rounded-3xl overflow-hidden group cursor-pointer border border-surface-container-highest">
+                            <img alt="Casual Tees" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEG5MFi7Hico03LErZnAIArHfPYnYM4mpa457HcweyOEpQKGMzPxFW9EQc2sxbP92rzkAII_C18eXnizFoT8hebKHfVGlc4keOSZ0tHMfst_MMxaqmR2nRdkbPQhXtOoFwwIWpID_XMqNKQdcKKAs7O0azASwoENpMcs59fGz_Tc08Hxv7kTKCjV667Hze6Q1DFuf44yfWC4nR-grGFt_2mD-mRmPGsu8TYvZY4Cr70c7xqj17sedQ7hSKDLb221Ss8myah8Mb9Ww"/>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-8 left-8 text-white">
+                                <h3 class="text-3xl font-black uppercase tracking-tight">Casual Tees</h3>
+                                <p class="opacity-90">Everyday vibrance</p>
+                            </div>
+                        </div>
+                        <div class="md:col-span-4 flex flex-col gap-grid-gutter">
+                            <div onclick="location.hash='#/shop'" class="flex-1 relative rounded-3xl overflow-hidden group cursor-pointer border border-surface-container-highest dark:border-zinc-800">
+                                <img alt="Formal Shirts" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSbbzx07b4R_yCV88pNA5_hTDJ576qYBNiSRO_0kt337tnYiY9YiBf_ZPEwmnLSK7Ca0f92Cm_tc9NzEMw8CmL_QWh_sPcZvgkOUX-L_umxgtNZa595iVwzX4W_BVmxFdO8_wmffqE_S4qMh43EQng4-ou1w-5pc0B7MKexgpMPQHEQtvnoA-tanlLOwP7qOLajM6SuHdMideafCBvYEo0dy6t8JWbYgtkwoleHK0QrWRtAWFfg1cBfOpYN52IYJvz31dI0LK02qM"/>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-6 left-6 text-white">
+                                    <h3 class="text-xl font-black uppercase tracking-tight">Formal Shirts</h3>
+                                    <p class="text-sm opacity-90">Executive flair</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Fabric Excellence -->
+                <section class="py-section-padding container mx-auto px-grid-margin">
+                    <div class="bg-zinc-950 rounded-[40px] p-12 md:p-20 flex flex-col md:flex-row items-center gap-16 overflow-hidden relative">
+                        <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/10 to-transparent"></div>
+                        <div class="flex-1 space-y-stack-lg z-10">
+                            <h2 class="text-white font-display-xl text-headline-lg md:text-display-xl">Feel the <br/><span class="text-tertiary-fixed">Excellence</span></h2>
+                            <p class="text-zinc-400 text-body-lg">Every thread in a Rare Rat garment is chosen for its breathability, durability, and how it holds vibrant dyes over time.</p>
+                            <button class="bg-white text-zinc-950 px-8 py-4 rounded-full font-bold hover:bg-tertiary-fixed transition-colors">Learn About Fabrics</button>
+                        </div>
+                        <div class="flex-1 flex justify-center gap-6 z-10">
+                            <div class="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-white/20 p-1 flex items-center justify-center">
+                                <div class="w-full h-full rounded-full overflow-hidden">
+                                    <img alt="Macro fabric" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH8OlRT5Lle_L1JzLr4DzckogXdhBV7cgmoLkctlBJIF09mf16VDu0_T4RjzZGRPbZRUxJXMwNicpB9wp2wldkm6LzHkcMpJ1gcXzIahX2z3cDmbuRscPSNuAe8bU-eRxwP6SDMWifd_x56Qut_LJSbjrrIj-fwn7xCoK9jP0cYQW0p6bFXbRevUGFx8XL7V_fzVj8BHRhQ_0KZReOe9MuEqaxxOO6TDFAo-Bt0l9rCwp8srgxOAmj_uVI9K2gv8zrGpJgVpxtoDM"/>
+                                </div>
+                            </div>
+                            <div class="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-white/20 p-1 flex items-center justify-center mt-12">
+                                <div class="w-full h-full rounded-full overflow-hidden">
+                                    <img alt="Macro cotton" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJaGduHLy-26e0Bdq92RPE7Z3mN8x5avEXsFl6FzUsp_ywZnrL-zGyHRa20rQUOqph1b1bm1-j1TyZPogTG4aOk13YPmIHIgFvqdfOABgGm48O7EKVTj9YM3c3nIqkHoQb3_Tfu5HPAJf1pH_fGnRTy8_-HARRUzwBEMrt8UyPZxgIQaXm6ENFVJ5oA-UidbOFoiSvLEHChkvZ_8YJAuWa1YZBlfFBgbnJdiuorY5-McJhaYcKt7jufRmdD1n5gQSs0wcGWY7ZWTo"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `
+            },
+            '/shop': {
+                title: 'Shop',
+                template: `
+                <main class="pt-24 pb-20 px-6 max-w-[1200px] mx-auto">
+                    <!-- Collection Header -->
+                    <section class="py-12 md:py-20">
+                        <div class="max-w-2xl">
+                            <span class="text-secondary dark:text-blue-400 font-label-caps tracking-widest uppercase mb-4 block text-xs">New Arrivals</span>
+                            <h2 class="font-display-xl text-5xl md:text-6xl text-on-surface dark:text-white">Vibrant Summer Drop</h2>
+                            <p class="mt-6 text-on-surface-variant dark:text-zinc-300 font-body-lg max-w-lg">Meticulously crafted menswear for the modern professional who isn't afraid of color. Experience luxury through bold aesthetics and premium fabrics.</p>
+                        </div>
+                    </section>
+                    <!-- Filters -->
+                    <section class="sticky top-[64px] md:top-[88px] z-40 bg-surface dark:bg-zinc-900/95 backdrop-blur-xl py-4 md:py-6 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6 border-b border-zinc-100 dark:border-zinc-800 shadow-sm">
+                        <div class="flex overflow-x-auto w-full md:w-auto pb-1 md:pb-0 no-scrollbar gap-3 px-4 md:px-0">
+                            <button class="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-bold text-sm whitespace-nowrap active:scale-95 transition-transform min-h-[44px]">
+                                <span class="material-symbols-outlined text-sm">tune</span>
+                                All
+                            </button>
+                            <button class="flex items-center gap-2 bg-white dark:bg-zinc-800 border border-secondary dark:border-zinc-700 text-secondary dark:text-zinc-300 px-6 py-3 rounded-full font-bold text-sm whitespace-nowrap hover:bg-secondary/5 transition-colors min-h-[44px]">
+                                Shirts
+                            </button>
+                            <button class="flex items-center gap-2 bg-white dark:bg-zinc-800 border border-tertiary dark:border-zinc-700 text-tertiary dark:text-zinc-300 px-6 py-3 rounded-full font-bold text-sm whitespace-nowrap hover:bg-tertiary/5 transition-colors min-h-[44px]">
+                                T-Shirts
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between w-full md:w-auto gap-4 px-4 md:px-0">
+                            <span class="text-sm font-label-caps text-on-surface-variant dark:text-zinc-500 whitespace-nowrap">24 Items</span>
+                            <button class="flex items-center gap-2 bg-white dark:bg-zinc-800 border border-surface-variant dark:border-zinc-700 px-4 py-2 rounded-xl text-sm font-bold text-on-surface dark:text-zinc-300 min-h-[44px]">
+                                Sort
+                                <span class="material-symbols-outlined text-sm">expand_more</span>
+                            </button>
+                        </div>
+                    </section>
+                    <!-- Product Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-grid-gutter gap-y-section-padding pt-16">
+                        <!-- Product 1 -->
+                        <div onclick="location.hash='#/product'" class="group cursor-pointer">
+                            <div class="relative overflow-hidden rounded-2xl bg-surface-container-low mb-6 aspect-[3/4]">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvfC-rCC4tnjSXaLXPhzSR4afgbS330Ks5LOninSI0zPCbZgfEw6P7rRdcOLEH5Ac7ZrMg2n8ob3eGtJfs8ETDvL_aKHL-v63wAAp7HHyY8N_Eeuq_nH2iO5IYL1IU-UXADqLc4OJX9b8fSJ9bkgTvn8sRIQyX3do1Ptb1i9P3uuIdmL-CY6l4_UhjYy6_NFzqSx0yQrG9cZBGbZcMhN7fgYkd1gqNgv60kQwUhRoW9gon6k-5BKnhEDPLnNv_JN2lyoKPelxnN1Q" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"/>
+                                <div class="absolute top-4 left-4 flex flex-col gap-2">
+                                    <span class="bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">Limited</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-start">
+                                <div class="flex-1">
+                                    <h3 class="font-headline-md text-on-surface dark:text-white group-hover:text-primary dark:group-hover:text-red-400 transition-colors">Coral Linen Riviera</h3>
+                                    <p class="text-zinc-400 dark:text-zinc-500 text-sm">Classic Fit</p>
+                                </div>
+                                <span class="font-bold text-primary dark:text-red-400">₹128</span>
+                            </div>
+                        </div>
+                        <!-- Product 2 -->
+                        <div onclick="location.hash='#/product'" class="group cursor-pointer">
+                            <div class="relative overflow-hidden rounded-2xl bg-surface-container-low mb-6 aspect-[3/4]">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUgQ4mDSoj80gXGS6ADv2TQWInqtOER72jxn6GeZZIvQMGkCUDzBkhuWzHxbKUUjYq9wxFOUZvid6mkw8eEy26TB64pE5FPDmQ3ZVfKrumUs_IBNxDJBgyul618yIwNG3QNt6CGZg3MbWAf-TaDqlZc5lQE4gcCsE9YcZFbwG78AU6uqE4p49sIQg6T8c2h1iGnlFKvX2n5P7sdPbppj94vi5wVr17888WKd43zyEtiGwda7fsrSsB2fpGE2GmhMY872XrMRgcqsU" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"/>
+                            </div>
+                            <div class="flex justify-between items-start">
+                                <div class="flex-1">
+                                    <h3 class="font-headline-md text-on-surface dark:text-white group-hover:text-secondary dark:group-hover:text-blue-400 transition-colors">Electric Cobalt Essential</h3>
+                                    <p class="text-zinc-400 dark:text-zinc-500 text-sm">Heavy Tee</p>
+                                </div>
+                                <span class="font-bold text-on-surface dark:text-white">₹75</span>
+                            </div>
+                        </div>
+                        <!-- Product 3 -->
+                        <div onclick="location.hash='#/product'" class="group cursor-pointer">
+                            <div class="relative overflow-hidden rounded-2xl bg-surface-container-low mb-6 aspect-[3/4]">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVCKdP6m9WiK7CVfuou8rKGV7Dd16PM7U4LraDj0KQl74nrSyF7ZqkUcCIXBAito648kB13l1hfn4MeIBmp5c8JIsgaHMcffiudZOef5V2RGlsgu-6S3wpQ2k2MErqidxNcQh2t6xIwxhyb1Up-PQEMy9XAzKaSmzcuQ9EwkeYGxSO1QmdQjl9FTavh1EIQczdaqlafKpI8G2JGIQwrAj-sYd3CHeM5Xsd38pKA8NQq0ZAXGyrBnRNtHdcpAnmEp-FSx3_aNr8010" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"/>
+                            </div>
+                            <div class="flex justify-between items-start">
+                                <div class="flex-1">
+                                    <h3 class="font-headline-md text-on-surface dark:text-white group-hover:text-tertiary dark:group-hover:text-lime-400 transition-colors">Citrus Knit Polo</h3>
+                                    <p class="text-zinc-400 dark:text-zinc-500 text-sm">Slim Fit</p>
+                                </div>
+                                <span class="font-bold text-on-surface dark:text-white">₹110</span>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            `
+            },
+            '/cart': {
+                title: 'Shopping Cart',
+                template: `
+                <main class="pt-28 pb-section-padding px-grid-margin max-w-[1200px] mx-auto min-h-[60dvh]">
+                    <div id="cart-container">
+                        <!-- Dynamic Cart content will be injected here -->
+                    </div>
+                </main>
+            `
+            },
+            '/wishlist': {
+                title: 'Wishlist',
+                template: `
+                <main class="pt-24 pb-20 px-6 max-w-[1200px] mx-auto min-h-[60dvh] flex flex-col items-center justify-center text-center">
+                    <span class="material-symbols-outlined text-zinc-200 dark:text-zinc-800 text-[120px] mb-6">favorite</span>
+                    <h1 class="font-display-xl text-4xl mb-4 text-on-background dark:text-white uppercase">Your Wishlist is Empty</h1>
+                    <p class="text-on-surface-variant dark:text-zinc-400 max-w-sm mb-8">Save items you love to your wishlist and they will appear here.</p>
+                    <button onclick="location.hash='#/shop'" class="bg-primary text-white px-8 py-4 rounded-xl font-bold uppercase tracking-wider hover:scale-105 transition-transform active:scale-95">
+                        Discover Styles
+                    </button>
+                </main>
+            `
+            },
+            '/admin': {
+                title: 'Admin Dashboard',
+                template: `
+                <main class="pt-24 pb-20 px-6 max-w-[1200px] mx-auto min-h-[80dvh]">
+                    <div id="admin-auth-section" class="max-w-md mx-auto py-20 text-center space-y-8">
+                        <span class="material-symbols-outlined text-[80px] text-zinc-200">admin_panel_settings</span>
+                        <h1 class="text-3xl font-black uppercase dark:text-white">Admin Access</h1>
+                        <div class="space-y-4">
+                            <input id="admin-email" type="email" placeholder="Email" class="w-full px-6 py-4 rounded-xl border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white outline-none focus:border-primary transition-colors">
+                            <input id="admin-password" type="password" placeholder="Password" class="w-full px-6 py-4 rounded-xl border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white outline-none focus:border-primary transition-colors">
+                            <button onclick="handleAdminLogin()" class="w-full bg-primary text-white py-4 rounded-xl font-bold uppercase tracking-widest hover:scale-105 transition-transform active:scale-95">Enter Dashboard</button>
+                        </div>
+                        <p class="text-zinc-400 text-sm">Restricted access for Rare Rat staff.</p>
+                    </div>
+                    <div id="admin-dashboard-section" class="hidden space-y-12">
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <h1 class="text-4xl font-black uppercase dark:text-white">Inventory Manager</h1>
+                                <p class="text-zinc-500">Manage your premium collections</p>
+                            </div>
+                            <button onclick="logoutAdmin()" class="text-zinc-400 hover:text-error transition-colors uppercase text-xs font-bold flex items-center gap-2">
+                                <span class="material-symbols-outlined text-sm">logout</span> Logout
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div class="bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-zinc-100 dark:border-zinc-800 shadow-sm">
+                                <h6 class="text-zinc-400 uppercase text-xs font-bold tracking-widest mb-2">Live Products</h6>
+                                <div id="stat-total-products" class="text-4xl font-black dark:text-white">--</div>
+                            </div>
+                        </div>
+                        <div class="bg-zinc-50 dark:bg-zinc-900/50 p-8 rounded-3xl border border-dashed border-zinc-300 dark:border-zinc-700">
+                            <h3 class="text-xl font-bold mb-6 dark:text-white">Add New Product</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <input id="new-p-name" placeholder="Garment Name" class="p-4 rounded-xl border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white">
+                                <input id="new-p-price" type="number" placeholder="Price ($)" class="p-4 rounded-xl border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white">
+                                <select id="new-p-cat" class="p-4 rounded-xl border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white">
+                                    <option value="Shirts">Shirts</option>
+                                    <option value="T-Shirts">T-Shirts</option>
+                                </select>
+                                <div class="relative group">
+                                    <input id="new-p-img" type="file" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                                    <div class="p-4 rounded-xl border-2 border-dashed border-zinc-200 dark:border-zinc-700 dark:bg-zinc-800 flex items-center justify-center gap-3 text-zinc-400 group-hover:border-primary transition-colors">
+                                        <span class="material-symbols-outlined">upload_file</span>
+                                        <span id="upload-status" class="text-sm font-bold">Upload Garment Photo</span>
+                                    </div>
+                                </div>
+                                <textarea id="new-p-desc" placeholder="Description" class="md:col-span-2 p-4 rounded-xl border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white h-32"></textarea>
+                                <button onclick="saveNewProduct()" class="md:col-span-2 bg-secondary text-white py-4 rounded-xl font-bold uppercase tracking-widest hover:scale-105 transition-all active:scale-95">Save to Inventory</button>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <h3 class="text-xl font-bold dark:text-white">Manage Listings</h3>
+                            <div id="admin-product-list" class="space-y-4">
+                                <!-- List will be injected here -->
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            `
+            }
+        };
+
+        async function router() {
+            try {
+                const hash = window.location.hash || '#/';
+                const rawHash = hash.replace('#', '');
+                const routeKey = rawHash.split('?')[0] || '/';
+                const route = routes[routeKey] || routes['/'];
+                
+                document.title = `${route.title} | Rare Rat`;
+                const container = document.getElementById('app-container');
+                
+                
+                if (!container) return;
+
+                // Admin Dashboard Logic
+                if (routeKey === '/admin') {
+                    if (localStorage.getItem('adminAuth') === 'true') {
+                        setTimeout(() => {
+                            container.innerHTML = route.template;
+                            container.style.opacity = '1';
+                            document.getElementById('admin-auth-section').classList.add('hidden');
+                            document.getElementById('admin-dashboard-section').classList.remove('hidden');
+                            updateAdminDashboard();
+                        }, 150);
+                    } else {
+                        container.innerHTML = route.template;
+                        container.style.opacity = '1';
+                    }
+                    return;
+                }
+
+                // Dynamic Logic for Shop
+                if (routeKey === '/shop') {
+                    container.style.opacity = '0';
+                    const products = await fetchSupabaseProducts();
+                    setTimeout(() => {
+                        container.innerHTML = renderShopPage(products);
+                        container.style.opacity = '1';
+                        window.scrollTo(0, 0);
+                        updateActiveLinks(hash);
+                    }, 150);
+                    return;
+                }
+
+                // Dynamic Logic for Product Detail
+                if (routeKey === '/product') {
+                    const params = new URLSearchParams(hash.split('?')[1]);
+                    const productId = params.get('id');
+                    container.style.opacity = '0';
+                    
+                    let product = null;
+                    if (productId && supabaseClient) {
+                        const { data } = await supabaseClient.from('products').select('*').eq('id', productId).single();
+                        product = data;
+                    }
+
+                    setTimeout(() => {
+                        container.innerHTML = renderProductDetailPage(product);
+                        container.style.opacity = '1';
+                        window.scrollTo(0, 0);
+                        updateActiveLinks(hash);
+                    }, 150);
+                    return;
+                }
+
+                // Smooth fade effect for static routes
+                container.style.opacity = '0';
+                setTimeout(() => {
+                    container.innerHTML = route.template;
+                    container.style.opacity = '1';
+                    window.scrollTo(0, 0);
+                    updateActiveLinks(hash);
+                    
+                    // IF it's the cart page, render it NOW that the container exists
+                    if (routeKey === '/cart') {
+                        renderCart();
+                    }
+                }, 150);
+            } catch (err) {
+                console.error("Router Error:", err);
+            }
+        }
+
+        function renderShopPage(products) {
+            const hasProducts = products && products.length > 0;
+            const productGrid = hasProducts 
+                ? products.map(p => `
+                    <div onclick="location.hash='#/product?id=${p.id}'" class="product-card group cursor-pointer fade-slide-up">
+                        <div class="relative overflow-hidden rounded-2xl bg-surface-container-low dark:bg-zinc-800 mb-6 aspect-[3/4]">
+                            <img src="${p.image_url || 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80'}" class="w-full h-full object-cover transition-transform duration-700"/>
+                            <div class="absolute top-4 left-4">
+                                <span class="badge-limited text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">${p.category || 'Rare'}</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div class="flex-1">
+                                <h3 class="font-headline-md text-base md:text-xl text-on-surface dark:text-white group-hover:text-primary dark:group-hover:text-red-400 transition-colors uppercase tracking-tight">${p.name}</h3>
+                                <p class="text-zinc-400 dark:text-zinc-500 text-sm">Fine Tailoring</p>
+                            </div>
+                            <span class="font-bold text-primary dark:text-red-400 text-lg">₹${p.price}</span>
+                        </div>
+                    </div>
+                `).join('')
+                : `<div class="col-span-full py-20 text-center space-y-4">
+                        <span class="material-symbols-outlined text-[64px] text-zinc-300 dark:text-zinc-800">inventory_2</span>
+                        <h3 class="text-xl font-bold dark:text-white">Your shop is empty.</h3>
+                        <p class="text-zinc-500 dark:text-zinc-400">Connect your products in the Supabase Dashboard.</p>
+                   </div>`;
+
+            return `
+                <main class="pt-24 pb-20 px-6 max-w-[1200px] mx-auto">
+                    <section class="py-12 md:py-20">
+                        <div class="max-w-2xl">
+                            <span class="text-secondary dark:text-blue-400 font-label-caps tracking-widest uppercase mb-4 block text-xs">Exquisite Styles</span>
+                            <h2 class="font-display-xl text-5xl md:text-6xl text-on-surface dark:text-white uppercase">Premium Collection</h2>
+                            <p class="mt-6 text-on-surface-variant dark:text-zinc-300 font-body-lg max-w-lg">Dynamic luxury delivered directly from your Supabase backend.</p>
+                        </div>
+                    </section>
+                    <section class="sticky top-[64px] md:top-[88px] z-40 bg-surface dark:bg-zinc-900/95 backdrop-blur-xl py-4 md:py-6 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6 border-b border-zinc-100 dark:border-zinc-800 shadow-sm">
+                        <div class="flex overflow-x-auto w-full md:w-auto pb-1 md:pb-0 no-scrollbar gap-3 px-4 md:px-0">
+                            <button class="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-bold text-sm whitespace-nowrap">All</button>
+                            <button class="flex items-center gap-2 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-300 px-6 py-3 rounded-full font-bold text-sm">Shirts</button>
+                            <button class="flex items-center gap-2 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-300 px-6 py-3 rounded-full font-bold text-sm">T-Shirts</button>
+                        </div>
+                        <div class="text-sm font-label-caps dark:text-zinc-400">${products?.length || 0} Items Found</div>
+                    </section>
+                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-12 gap-y-12 md:gap-y-20 pt-8 md:pt-16">
+                        ${productGrid}
+                    </div>
+                </main>
+            `;
+        }
+
+        function renderProductDetailPage(p) {
+            if (!p) {
+                return `<div class="pt-40 text-center"><h1 class="text-3xl font-bold dark:text-white">Product Not Found</h1><a href="#/shop" class="text-primary mt-4 block">Back to Shop</a></div>`;
+            }
+            return `
+                <main class="pt-24 pb-20 px-6 max-w-[1400px] mx-auto">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                        <div class="lg:col-span-7">
+                            <div class="overflow-hidden rounded-3xl bg-surface-container-low shadow-2xl aspect-[4/5]">
+                                <img src="${p.image_url}" class="w-full h-full object-cover"/>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5 flex flex-col gap-8 sticky top-32 h-fit">
+                            <div class="space-y-4">
+                                <span class="font-label-caps text-secondary dark:text-blue-400 tracking-widest uppercase">${p.category || 'Limited Edition'}</span>
+                                <h1 class="font-display-xl text-5xl md:text-6xl text-on-surface dark:text-white uppercase leading-none">${p.name}</h1>
+                                <p class="font-body-lg text-on-surface-variant dark:text-zinc-400 max-w-md">${p.description || 'A premium garment crafted for excellence.'}</p>
+                                <div class="pt-4"><span class="font-headline-lg text-headline-lg text-primary dark:text-red-400">₹${p.price}</span></div>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <button onclick="addToCart('${p.id}')" class="bg-secondary text-white font-bold py-6 rounded-2xl flex items-center justify-center gap-3 hover:scale-[1.02] transition-transform active:scale-95 uppercase">
+                                    ADD TO BAG <span class="material-symbols-outlined">shopping_bag</span>
+                                </button>
+                                <button onclick="history.back()" class="text-zinc-500 hover:text-primary transition-colors flex items-center justify-center gap-2 uppercase tracking-widest font-bold text-xs">
+                                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            `;
+        }
+
+        // Admin Functions
+        async function handleAdminLogin() {
+            const email = document.getElementById('admin-email').value;
+            const password = document.getElementById('admin-password').value;
+            
+            // Master Override for Initial Setup
+            if (email === 'admin@rarerat.com' && password === 'admin') {
+                localStorage.setItem('adminAuth', 'true');
+                return router();
+            }
+
+            if (supabaseClient) {
+                const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+                if (error) return alert(error.message);
+                localStorage.setItem('adminAuth', 'true');
+                router();
+            } else {
+                alert('Invalid credentials');
+            }
+        }
+
+        function logoutAdmin() {
+            localStorage.removeItem('adminAuth');
+            router();
+        }
+
+        async function updateAdminDashboard() {
+            const products = await fetchSupabaseProducts();
+            if(!products) return;
+            
+            document.getElementById('stat-total-products').textContent = products.length;
+            const list = document.getElementById('admin-product-list');
+            list.innerHTML = products.map(p => `
+                <div class="bg-surface dark:bg-zinc-800 p-6 rounded-2xl border border-zinc-100 dark:border-zinc-700 flex justify-between items-center">
+                    <div class="flex items-center gap-4">
+                        <img src="${p.image_url}" class="w-12 h-12 rounded-lg object-cover">
+                        <div>
+                            <div class="font-bold dark:text-white">${p.name}</div>
+                            <div class="text-sm text-zinc-400">₹${p.price} • ${p.category}</div>
+                        </div>
+                    </div>
+                    <button onclick="deleteProduct('${p.id}')" class="text-zinc-400 hover:text-error transition-colors">
+                        <span class="material-symbols-outlined">delete</span>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        async function saveNewProduct() {
+            const btn = event.currentTarget;
+            const originalText = btn.textContent;
+            
+            const name = document.getElementById('new-p-name').value;
+            const price = document.getElementById('new-p-price').value;
+            const category = document.getElementById('new-p-cat').value;
+            const fileInput = document.getElementById('new-p-img');
+            const description = document.getElementById('new-p-desc').value;
+
+            if (!name || !price || !fileInput.files[0]) return alert('Please fill all fields and select a photo');
+
+            try {
+                btn.textContent = 'Uploading...';
+                btn.disabled = true;
+
+                const file = fileInput.files[0];
+                const fileExt = file.name.split('.').pop();
+                const fileName = `${Math.random()}.${fileExt}`;
+                const filePath = `${fileName}`;
+
+                // Upload to Supabase Storage
+                const { data: uploadData, error: uploadError } = await supabaseClient.storage
+                    .from('product-images')
+                    .upload(filePath, file);
+
+                if (uploadError) throw uploadError;
+
+                // Get Public URL
+                const { data: { publicUrl } } = supabaseClient.storage
+                    .from('product-images')
+                    .getPublicUrl(filePath);
+
+                // Insert into Database
+                const { error: dbError } = await supabaseClient.from('products').insert([{ 
+                    name, 
+                    price, 
+                    category, 
+                    image_url: publicUrl, 
+                    description 
+                }]);
+
+                if (dbError) throw dbError;
+
+                alert('Product added successfully!');
+                document.getElementById('new-p-name').value = '';
+                document.getElementById('new-p-price').value = '';
+                document.getElementById('new-p-desc').value = '';
+                document.getElementById('new-p-img').value = '';
+                document.getElementById('upload-status').textContent = 'Upload Garment Photo';
+                updateAdminDashboard();
+
+            } catch (err) {
+                console.error(err);
+                alert('Error: ' + err.message);
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // Preview handler for file upload
+        window.addEventListener('change', (e) => {
+            if (e.target.id === 'new-p-img') {
+                const status = document.getElementById('upload-status');
+                if (e.target.files[0]) {
+                    status.textContent = e.target.files[0].name;
+                    status.classList.add('text-primary');
+                }
+            }
+        });
+
+        async function deleteProduct(id) {
+            if (!confirm('Are you sure?')) return;
+            const { error } = await supabaseClient.from('products').delete().eq('id', id);
+            if (error) alert(error.message);
+            else updateAdminDashboard();
+        }
+
+        // Seeding Logic
+        async function seedDatabase() {
+            if (!supabaseClient) return alert('Supabase not connected!');
+            const demoProducts = [
+                { name: 'Coral Linen Riviera', price: 128, category: 'Shirts', description: 'Classic Fit Linen', image_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDvfC-rCC4tnjSXaLXPhzSR4afgbS330Ks5LOninSI0zPCbZgfEw6P7rRdcOLEH5Ac7ZrMg2n8ob3eGtJfs8ETDvL_aKHL-v63wAAp7HHyY8N_Eeuq_nH2iO5IYL1IU-UXADqLc4OJX9b8fSJ9bkgTvn8sRIQyX3do1Ptb1i9P3uuIdmL-CY6l4_UhjYy6_NFzqSx0yQrG9cZBGbZcMhN7fgYkd1gqNgv60kQwUhRoW9gon6k-5BKnhEDPLnNv_JN2lyoKPelxnN1Q' },
+                { name: 'Electric Cobalt Essential', price: 75, category: 'T-Shirts', description: 'Heavy Tee', image_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBUgQ4mDSoj80gXGS6ADv2TQWInqtOER72jxn6GeZZIvQMGkCUDzBkhuWzHxbKUUjYq9wxFOUZvid6mkw8eEy26TB64pE5FPDmQ3ZVfKrumUs_IBNxDJBgyul618yIwNG3QNt6CGZg3MbWAf-TaDqlZc5lQE4gcCsE9YcZFbwG78AU6uqE4p49sIQg6T8c2h1iGnlFKvX2n5P7sdPbppj94vi5wVr17888WKd43zyEtiGwda7fsrSsB2fpGE2GmhMY872XrMRgcqsU' },
+                { name: 'Citrus Knit Polo', price: 110, category: 'T-Shirts', description: 'Slim Fit', image_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBVCKdP6m9WiK7CVfuou8rKGV7Dd16PM7U4LraDj0KQl74nrSyF7ZqkUcCIXBAito648kB13l1hfn4MeIBmp5c8JIsgaHMcffiudZOef5V2RGlsgu-6S3wpQ2k2MErqidxNcQh2t6xIwxhyb1Up-PQEMy9XAzKaSmzcuQ9EwkeYGxSO1QmdQjl9FTavh1EIQczdaqlafKpI8G2JGIQwrAj-sYd3CHeM5Xsd38pKA8NQq0ZAXGyrBnRNtHdcpAnmEp-FSx3_aNr8010' }
+            ];
+            
+            const { error } = await supabaseClient.from('products').insert(demoProducts);
+            if (error) console.error(error);
+            else {
+                alert('Database seeded successfully!');
+                router();
+            }
+        }
+
+
+
+        // Cart System
+        let cart = JSON.parse(localStorage.getItem('rare_rat_cart')) || [];
+
+        function updateCartBadge() {
+            const badge = document.getElementById('cart-count');
+            if (!badge) return; // Safety check
+            const totalItems = (cart || []).reduce((sum, item) => sum + item.quantity, 0);
+            if (totalItems > 0) {
+                badge.textContent = totalItems;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        async function addToCart(productId) {
+            console.log('Adding to cart, ID:', productId);
+            try {
+                if (!supabaseClient) throw new Error('Supabase Client not initialized');
+
+                const products = await fetchSupabaseProducts();
+                console.log('Fetched products for cart check:', products);
+
+                if (!products) throw new Error('Could not fetch products from database');
+                
+                const product = products.find(p => p.id == productId); // Use == for flexible string/number matching
+                if (!product) throw new Error(`Product with ID ${productId} not found in database`);
+
+                // Get current cart from storage
+                let currentCart = [];
+                const storedCart = localStorage.getItem('rare_rat_cart');
+                if (storedCart) {
+                    try {
+                        currentCart = JSON.parse(storedCart);
+                    } catch (e) {
+                        console.error('Cart parse error, resetting:', e);
+                        currentCart = [];
+                    }
+                }
+                
+                const existingIndex = currentCart.findIndex(item => item.id == productId);
+                if (existingIndex > -1) {
+                    currentCart[existingIndex].quantity += 1;
+                } else {
+                    currentCart.push({ ...product, quantity: 1 });
+                }
+                
+                localStorage.setItem('rare_rat_cart', JSON.stringify(currentCart));
+                
+                // Update global reference
+                if (typeof cart !== 'undefined') cart = currentCart;
+                
+                updateCartBadge();
+                alert('Success! Added to your Bag.');
+            } catch (err) {
+                console.error('Full Cart Error:', err);
+                alert('Error: ' + err.message);
+            }
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('rare_rat_cart', JSON.stringify(cart));
+            updateCartBadge();
+            renderCart();
+        }
+
+        function updateQuantity(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    localStorage.setItem('rare_rat_cart', JSON.stringify(cart));
+                    updateCartBadge();
+                    renderCart();
+                }
+            }
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-container');
+            if (!container) return;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="flex flex-col items-center justify-center text-center py-20">
+                        <span class="material-symbols-outlined text-zinc-100 dark:text-zinc-800 text-[120px] mb-6">shopping_basket</span>
+                        <h1 class="font-display-xl text-3xl mb-4 dark:text-white">Your Cart is Empty</h1>
+                        <button onclick="location.hash='#/shop'" class="bg-primary text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest">Start Shopping</button>
+                    </div>
+                `;
+                return;
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            container.innerHTML = `
+                <div class="mb-12">
+                    <h1 class="font-display-xl text-5xl md:text-7xl text-on-background dark:text-white uppercase mb-4">Your Cart</h1>
+                    <p class="text-zinc-500 dark:text-zinc-400 font-medium">Review your selection of meticulously crafted shirts.</p>
+                </div>
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <div class="flex-grow space-y-6">
+                        ${cart.map(item => `
+                            <div class="bg-white dark:bg-zinc-900/50 p-4 rounded-2xl border border-zinc-100 dark:border-zinc-800 flex gap-6">
+                                <img src="${item.image_url}" class="w-24 h-32 md:w-32 md:h-40 rounded-xl object-cover">
+                                <div class="flex-grow flex flex-col justify-between py-2">
+                                    <div class="flex justify-between">
+                                        <div>
+                                            <h3 class="font-headline-md text-xl dark:text-white">${item.name}</h3>
+                                            <p class="text-secondary text-sm font-bold uppercase">${item.category}</p>
+                                        </div>
+                                        <button onclick="removeFromCart('${item.id}')" class="text-zinc-400 hover:text-error transition-colors">
+                                            <span class="material-symbols-outlined">delete</span>
+                                        </button>
+                                    </div>
+                                    <div class="flex justify-between items-end">
+                                        <div class="flex items-center bg-zinc-100 dark:bg-zinc-800 rounded-full px-1 py-1">
+                                            <button onclick="updateQuantity('${item.id}', -1)" class="w-8 h-8 flex items-center justify-center hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded-full transition-colors"><span class="material-symbols-outlined text-sm">remove</span></button>
+                                            <span class="px-3 font-bold text-sm dark:text-white">${item.quantity}</span>
+                                            <button onclick="updateQuantity('${item.id}', 1)" class="w-8 h-8 flex items-center justify-center hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded-full transition-colors"><span class="material-symbols-outlined text-sm">add</span></button>
+                                        </div>
+                                        <span class="font-bold text-primary dark:text-red-400 text-xl">₹${item.price * item.quantity}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="lg:w-96">
+                        <div class="bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-zinc-100 dark:border-zinc-800 shadow-xl sticky top-28">
+                            <h2 class="font-headline-lg text-2xl mb-8 dark:text-white">Order Summary</h2>
+                            <div class="space-y-4 mb-8">
+                                <div class="flex justify-between text-zinc-500"><span>Subtotal</span><span>₹${subtotal}</span></div>
+                                <div class="flex justify-between text-zinc-500"><span>Shipping</span><span class="text-tertiary font-bold">FREE</span></div>
+                                <div class="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex justify-between items-center">
+                                    <span class="font-bold dark:text-white">Total</span>
+                                    <span class="text-3xl font-black text-primary dark:text-red-400">₹${subtotal}</span>
+                                </div>
+                            </div>
+                            <button onclick="checkoutViaWhatsApp()" class="w-full bg-[#25D366] text-white py-6 rounded-2xl flex items-center justify-center gap-3 font-bold uppercase transition-transform hover:scale-[1.02]">
+                                <span class="material-symbols-outlined">chat</span>
+                                Checkout via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function checkoutViaWhatsApp() {
+            if (cart.length === 0) return alert('Your cart is empty');
+            
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            let message = "🛍️ *New Order from Rare Rat Storefront*\n\n";
+            cart.forEach((item, index) => {
+                message += `${index + 1}. *${item.name}*\n`;
+                message += `   Qty: ${item.quantity} | Total: ₹${item.price * item.quantity}\n`;
+            });
+            
+            message += `\n💰 *Total Amount: ₹${subtotal}*\n\n`;
+            message += "Please confirm my order. Thank you!";
+            
+            const encodedMessage = encodeURIComponent(message);
+            const phoneNumber = "918125740252"; 
+            const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            window.open(url, '_blank');
+        }
+
+        function updateActiveLinks(hash) {
+            // Update desktop nav
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === hash || (hash === '' && href === '#/')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // Update mobile tab bar
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === hash || (hash === '' && href === '#/')) {
+                    link.classList.add('text-primary', 'bg-red-50', 'dark:bg-red-950/30', 'rounded-2xl');
+                } else {
+                    link.classList.remove('text-primary', 'bg-red-50', 'dark:bg-red-950/30', 'rounded-2xl');
+                }
+            });
+        }
+
+        // Dark Mode Logic
+        function toggleDarkMode() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateThemeIcon();
+        }
+
+        function updateThemeIcon() {
+            const icon = document.getElementById('theme-icon');
+            if (document.documentElement.classList.contains('dark')) {
+                icon.textContent = 'dark_mode';
+            } else {
+                icon.textContent = 'light_mode';
+            }
+        }
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Initialize App
+        window.addEventListener('hashchange', () => {
+            router();
+        });
+        
+        window.addEventListener('load', () => {
+            router();
+            updateThemeIcon();
+            updateCartBadge();
+        });
+
+        // Scroll Progress Handler
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            const progress = document.getElementById("scroll-progress");
+            if (progress) progress.style.width = scrolled + "%";
+        });
+    </script>
+
+</body>
+
+</html>
