@@ -725,19 +725,19 @@
             const hasProducts = products && products.length > 0;
             const productGrid = hasProducts 
                 ? products.map(p => `
-                    <div onclick="location.hash='#/product?id=${p.id}'" class="product-card group cursor-pointer fade-slide-up">
-                        <div class="relative overflow-hidden rounded-2xl bg-surface-container-low dark:bg-zinc-800 mb-6 aspect-[3/4]">
-                            <img src="${p.image_url || 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80'}" class="w-full h-full object-cover transition-transform duration-700"/>
-                            <div class="absolute top-4 left-4">
-                                <span class="badge-limited text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">${p.category || 'Rare'}</span>
+                    <div onclick="location.hash='#/product?id=${p.id}'" class="product-card group cursor-pointer reveal">
+                        <div class="relative overflow-hidden aspect-[3/4]">
+                            <img src="${p.image_url || 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80'}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"/>
+                            <div class="absolute top-6 left-6">
+                                <span class="badge-rare">${p.category || 'Limited'}</span>
                             </div>
                         </div>
-                        <div class="flex justify-between items-start">
-                            <div class="flex-1">
-                                <h3 class="font-headline-md text-base md:text-xl text-on-surface dark:text-white group-hover:text-primary dark:group-hover:text-red-400 transition-colors uppercase tracking-tight">${p.name}</h3>
-                                <p class="text-zinc-400 dark:text-zinc-500 text-sm">Fine Tailoring</p>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start gap-4 mb-1">
+                                <h3 class="font-bold text-base md:text-lg dark:text-white uppercase tracking-tight">${p.name}</h3>
+                                <span class="font-bold text-primary">₹${p.price}</span>
                             </div>
-                            <span class="font-bold text-primary dark:text-red-400 text-lg">₹${p.price}</span>
+                            <p class="text-zinc-500 dark:text-zinc-400 text-[10px] uppercase tracking-widest font-medium">${p.description || 'Premium Tailoring'}</p>
                         </div>
                     </div>
                 `).join('')
