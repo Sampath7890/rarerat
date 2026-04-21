@@ -824,14 +824,15 @@
 
             return `
                 <main class="pt-24 pb-20 px-6 max-w-[1200px] mx-auto">
-                    <section class="py-12 md:py-20">
-                        <div class="max-w-2xl">
-                            <span class="text-secondary dark:text-blue-400 font-label-caps tracking-widest uppercase mb-4 block text-xs">Exquisite Styles</span>
-                            <h2 class="font-display-xl text-5xl md:text-6xl text-on-surface dark:text-white uppercase">Premium Collection</h2>
-                            <p class="mt-6 text-on-surface-variant dark:text-zinc-300 font-body-lg max-w-lg">Dynamic luxury delivered directly from your Supabase backend.</p>
+                    <section class="py-12 md:py-20 text-center">
+                        <div class="inline-block mb-4">
+                            <span class="text-[#993300] font-bold tracking-[0.4em] uppercase text-xs">Exquisite Styles</span>
+                            <div class="h-px w-full bg-[#993300]/20 mt-1"></div>
                         </div>
+                        <h2 class="font-serif text-5xl md:text-7xl uppercase mb-6">Premium Collection</h2>
+                        <p class="text-zinc-600 font-medium max-w-lg mx-auto">Luxury tailoring and essential silhouettes, curated for the modern Rare Rat enthusiast.</p>
                     </section>
-                    <section class="sticky top-[72px] z-40 bg-white dark:bg-zinc-950 backdrop-blur-xl py-4 md:py-5 flex flex-col md:flex-row justify-between items-center gap-4 border-b border-zinc-100 dark:border-zinc-900 shadow-sm">
+                    <section class="sticky top-[72px] z-40 bg-white/90 backdrop-blur-xl py-5 flex flex-col md:flex-row justify-center items-center gap-6 border-y border-black/5 mb-12">
                         <div class="flex overflow-x-auto w-full md:w-auto pb-1 md:pb-0 no-scrollbar gap-3 px-4 md:px-0">
                             ${['All', 'Shirts', 'T-Shirts', 'Pants', 'Jackets', 'Jeans'].map(cat => `
                                 <button onclick="filterShop('${cat}')" 
@@ -1087,9 +1088,15 @@
         async function seedDatabase() {
             if (!supabaseClient) return alert('Supabase not connected!');
             const demoProducts = [
-                { name: 'Coral Linen Riviera', price: 128, category: 'Shirts', description: 'Classic Fit Linen', image_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDvfC-rCC4tnjSXaLXPhzSR4afgbS330Ks5LOninSI0zPCbZgfEw6P7rRdcOLEH5Ac7ZrMg2n8ob3eGtJfs8ETDvL_aKHL-v63wAAp7HHyY8N_Eeuq_nH2iO5IYL1IU-UXADqLc4OJX9b8fSJ9bkgTvn8sRIQyX3do1Ptb1i9P3uuIdmL-CY6l4_UhjYy6_NFzqSx0yQrG9cZBGbZcMhN7fgYkd1gqNgv60kQwUhRoW9gon6k-5BKnhEDPLnNv_JN2lyoKPelxnN1Q' },
-                { name: 'Electric Cobalt Essential', price: 75, category: 'T-Shirts', description: 'Heavy Tee', image_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBUgQ4mDSoj80gXGS6ADv2TQWInqtOER72jxn6GeZZIvQMGkCUDzBkhuWzHxbKUUjYq9wxFOUZvid6mkw8eEy26TB64pE5FPDmQ3ZVfKrumUs_IBNxDJBgyul618yIwNG3QNt6CGZg3MbWAf-TaDqlZc5lQE4gcCsE9YcZFbwG78AU6uqE4p49sIQg6T8c2h1iGnlFKvX2n5P7sdPbppj94vi5wVr17888WKd43zyEtiGwda7fsrSsB2fpGE2GmhMY872XrMRgcqsU' },
-                { name: 'Citrus Knit Polo', price: 110, category: 'T-Shirts', description: 'Slim Fit', image_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBVCKdP6m9WiK7CVfuou8rKGV7Dd16PM7U4LraDj0KQl74nrSyF7ZqkUcCIXBAito648kB13l1hfn4MeIBmp5c8JIsgaHMcffiudZOef5V2RGlsgu-6S3wpQ2k2MErqidxNcQh2t6xIwxhyb1Up-PQEMy9XAzKaSmzcuQ9EwkeYGxSO1QmdQjl9FTavh1EIQczdaqlafKpI8G2JGIQwrAj-sYd3CHeM5Xsd38pKA8NQq0ZAXGyrBnRNtHdcpAnmEp-FSx3_aNr8010' }
+                { name: 'Coral Linen Riviera', price: 128, category: 'Shirts', description: 'Classic Fit Linen', image_url: 'https://images.unsplash.com/photo-1594932224030-94215aba3997?auto=format&fit=crop&q=80' },
+                { name: 'Sun-Kissed Linen', price: 145, category: 'Shirts', description: 'Boutique Summer Wear', image_url: 'https://images.unsplash.com/photo-1617137984095-74e4a5e3059f?auto=format&fit=crop&q=80' },
+                { name: 'Midnight Silk Shirt', price: 195, category: 'Shirts', description: 'Fine Evening Silk', image_url: 'https://images.unsplash.com/photo-1554560309-43d14b43a228?auto=format&fit=crop&q=80' },
+                { name: 'Champagne Linen', price: 135, category: 'Shirts', description: 'Relaxed Tailoring', image_url: 'https://images.unsplash.com/photo-1555689502-c4b22d76c56f?auto=format&fit=crop&q=80' },
+                { name: 'Electric Cobalt Tee', price: 75, category: 'T-Shirts', description: 'Heavyweight Cotton', image_url: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80' },
+                { name: 'Oversized Sand Tee', price: 85, category: 'T-Shirts', description: 'Modern Silhouette', image_url: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&q=80' },
+                { name: 'Vintage Cream Polo', price: 110, category: 'T-Shirts', description: 'Knit Texture', image_url: 'https://images.unsplash.com/photo-1626497748470-281d5c657be7?auto=format&fit=crop&q=80' },
+                { name: 'Charcoal Mesh Tee', price: 90, category: 'T-Shirts', description: 'Tech Fabric', image_url: 'https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&q=80' },
+                { name: 'Burnt Orange Essential', price: 70, category: 'T-Shirts', description: 'Signature Color', image_url: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&q=80' }
             ];
             
             const { error } = await supabaseClient.from('products').insert(demoProducts);
