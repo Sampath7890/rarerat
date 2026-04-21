@@ -132,10 +132,13 @@
             -webkit-tap-highlight-color: transparent;
             background: linear-gradient(160deg, #fff8f0 0%, #fff0f5 30%, #f0f4ff 60%, #f0fff8 100%);
             background-attachment: fixed;
+            color: #1a1a1a;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
         .dark body {
-            background: linear-gradient(160deg, #0c0d0e 0%, #110d10 40%, #0a0d18 100%) !important;
+            background: radial-gradient(circle at top right, #1a0a0c, #0a0c1a), #050505 !important;
             background-attachment: fixed !important;
+            color: #f4f4f5;
         }
 
         .fade-in {
@@ -193,9 +196,15 @@
             66% { transform: translate(-20px, 30px) scale(0.95); }
         }
 
-        /* Dark mode custom background */
-        .dark .bg-surface { background-color: #0c0d0e; }
-        .dark .bg-white { background-color: #121416; }
+        /* Dark mode custom surfaces */
+        .dark .bg-surface { background-color: #0c0c0e; }
+        .dark .bg-white { background-color: #121214; }
+        .dark .text-on-surface { color: #f4f4f5 !important; }
+        .dark .text-on-surface-variant { color: #a1a1aa !important; }
+        .dark .border-zinc-100 { border-color: #27272a !important; }
+        .dark .bg-zinc-50 { background-color: #0c0c0e !important; }
+        .dark h1, .dark h2, .dark h3, .dark h4 { color: #ffffff !important; }
+        .dark p { color: #d1d1d6 !important; }
 
         .logo-img {
             height: 32px;
@@ -241,13 +250,25 @@
 
         .product-card {
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid transparent;
+            border: 1px solid rgba(0,0,0,0.05);
             background-clip: padding-box;
+            background: #ffffff;
+        }
+        .dark .product-card {
+            background: rgba(24, 24, 27, 0.6);
+            backdrop-filter: blur(10px);
+            border-color: rgba(255,255,255,0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
         .product-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 30px 60px rgba(183,20,34,0.15), 0 10px 20px rgba(26,35,126,0.08);
-            border-color: rgba(183,20,34,0.2);
+            border-color: rgba(183,20,34,0.3);
+        }
+        .dark .product-card:hover {
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 20px rgba(183,20,34,0.2);
+            border-color: rgba(183,20,34,0.5);
+            background: rgba(30, 30, 34, 0.8);
         }
         .product-card:hover img { scale: 1.05; }
         .product-card::before {
@@ -331,9 +352,17 @@
             border: 1px solid rgba(255,255,255,0.8);
         }
         .dark .glass-card {
-            background: rgba(18,20,22,0.6);
-            border-color: rgba(255,255,255,0.08);
+            background: rgba(15, 15, 18, 0.7);
+            border-color: rgba(255,255,255,0.1);
+            backdrop-filter: blur(24px);
         }
+        
+        .dark .nav-link { color: #a1a1aa; }
+        .dark .nav-link:hover { color: #ffffff; }
+        .dark .nav-link.active { color: #ffffff !important; }
+
+        .dark .pill-ruby { box-shadow: 0 0 20px rgba(183,20,34,0.3); }
+        .dark .pill-indigo { box-shadow: 0 0 20px rgba(26,35,126,0.3); }
 
         .badge-limited {
             background: linear-gradient(135deg, #b71422 0%, #e91e63 60%, #1a237e 100%);
@@ -460,8 +489,8 @@
             </div>
         </div>
         <div class="border-t border-zinc-800 py-10 px-12 flex flex-col md:flex-row justify-between items-center gap-4 bg-black/50">
-            <p class="text-zinc-500 text-[10px] uppercase tracking-[0.2em]">© 2026 Rare Rat Menswear. Established in 2026.</p>
-            <div class="flex gap-8 text-[10px] text-zinc-500 uppercase tracking-widest">
+            <p class="text-zinc-500 dark:text-zinc-400 text-[10px] uppercase tracking-[0.2em]">© 2026 Rare Rat Menswear. Established in 2026.</p>
+            <div class="flex gap-8 text-[10px] text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">
                 <span class="hover:text-white cursor-pointer transition-colors">Privacy Policy</span>
                 <span class="hover:text-white cursor-pointer transition-colors">Terms of Service</span>
             </div>
@@ -638,7 +667,7 @@
                             </button>
                         </div>
                         <div class="flex items-center justify-between w-full md:w-auto gap-4 px-4 md:px-0">
-                            <span class="text-sm font-label-caps text-on-surface-variant dark:text-zinc-500 whitespace-nowrap">24 Items</span>
+                            <span class="text-sm font-label-caps text-on-surface-variant dark:text-zinc-400 whitespace-nowrap">24 Items</span>
                             <button class="flex items-center gap-2 bg-white dark:bg-zinc-800 border border-surface-variant dark:border-zinc-700 px-4 py-2 rounded-xl text-sm font-bold text-on-surface dark:text-zinc-300 min-h-[44px]">
                                 Sort
                                 <span class="material-symbols-outlined text-sm">expand_more</span>
@@ -658,7 +687,7 @@
                             <div class="flex justify-between items-start">
                                 <div class="flex-1">
                                     <h3 class="font-headline-md text-on-surface dark:text-white group-hover:text-primary dark:group-hover:text-red-400 transition-colors">Coral Linen Riviera</h3>
-                                    <p class="text-zinc-400 dark:text-zinc-500 text-sm">Classic Fit</p>
+                                    <p class="text-zinc-500 dark:text-zinc-400 text-sm">Classic Fit</p>
                                 </div>
                                 <span class="font-bold text-primary dark:text-red-400">₹128</span>
                             </div>
@@ -671,7 +700,7 @@
                             <div class="flex justify-between items-start">
                                 <div class="flex-1">
                                     <h3 class="font-headline-md text-on-surface dark:text-white group-hover:text-secondary dark:group-hover:text-blue-400 transition-colors">Electric Cobalt Essential</h3>
-                                    <p class="text-zinc-400 dark:text-zinc-500 text-sm">Heavy Tee</p>
+                                    <p class="text-zinc-500 dark:text-zinc-400 text-sm">Heavy Tee</p>
                                 </div>
                                 <span class="font-bold text-on-surface dark:text-white">₹75</span>
                             </div>
@@ -684,7 +713,7 @@
                             <div class="flex justify-between items-start">
                                 <div class="flex-1">
                                     <h3 class="font-headline-md text-on-surface dark:text-white group-hover:text-tertiary dark:group-hover:text-lime-400 transition-colors">Citrus Knit Polo</h3>
-                                    <p class="text-zinc-400 dark:text-zinc-500 text-sm">Slim Fit</p>
+                                    <p class="text-zinc-500 dark:text-zinc-400 text-sm">Slim Fit</p>
                                 </div>
                                 <span class="font-bold text-on-surface dark:text-white">₹110</span>
                             </div>
@@ -734,7 +763,7 @@
                         <div class="flex justify-between items-end">
                             <div>
                                 <h1 class="text-4xl font-black uppercase dark:text-white">Inventory Manager</h1>
-                                <p class="text-zinc-500">Manage your premium collections</p>
+                                <p class="text-zinc-500 dark:text-zinc-400">Manage your premium collections</p>
                             </div>
                             <button onclick="logoutAdmin()" class="text-zinc-400 hover:text-error transition-colors uppercase text-xs font-bold flex items-center gap-2">
                                 <span class="material-symbols-outlined text-sm">logout</span> Logout
@@ -933,7 +962,7 @@
                                 <button onclick="addToCart('${p.id}')" class="bg-secondary text-white font-bold py-6 rounded-2xl flex items-center justify-center gap-3 hover:scale-[1.02] transition-transform active:scale-95 uppercase">
                                     ADD TO BAG <span class="material-symbols-outlined">shopping_bag</span>
                                 </button>
-                                <button onclick="history.back()" class="text-zinc-500 hover:text-primary transition-colors flex items-center justify-center gap-2 uppercase tracking-widest font-bold text-xs">
+                                <button onclick="history.back()" class="text-zinc-500 dark:text-zinc-400 hover:text-primary transition-colors flex items-center justify-center gap-2 uppercase tracking-widest font-bold text-xs">
                                     <span class="material-symbols-outlined text-sm">arrow_back</span> Back
                                 </button>
                             </div>
@@ -1223,8 +1252,8 @@
                         <div class="bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-zinc-100 dark:border-zinc-800 shadow-xl sticky top-28">
                             <h2 class="font-headline-lg text-2xl mb-8 dark:text-white">Order Summary</h2>
                             <div class="space-y-4 mb-8">
-                                <div class="flex justify-between text-zinc-500"><span>Subtotal</span><span>₹${subtotal}</span></div>
-                                <div class="flex justify-between text-zinc-500"><span>Shipping</span><span class="text-tertiary font-bold">FREE</span></div>
+                                <div class="flex justify-between text-zinc-500 dark:text-zinc-400"><span>Subtotal</span><span>₹${subtotal}</span></div>
+                                <div class="flex justify-between text-zinc-500 dark:text-zinc-400"><span>Shipping</span><span class="text-tertiary font-bold">FREE</span></div>
                                 <div class="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex justify-between items-center">
                                     <span class="font-bold dark:text-white">Total</span>
                                     <span class="text-3xl font-black text-primary dark:text-red-400">₹${subtotal}</span>
