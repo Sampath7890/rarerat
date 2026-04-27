@@ -4,7 +4,7 @@
   "description": "Unified premium menswear storefront",
   "main": "index.html",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
   },
