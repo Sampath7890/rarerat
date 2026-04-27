@@ -9,10 +9,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>Mensrare | Premium Colorful Menswear</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap"
-        rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -24,35 +24,30 @@
             theme: {
                 extend: {
                     "colors": {
-                        "surface-container-low": "#FFF9E6",
-                        "inverse-surface": "#2e3132",
-                        "on-error-container": "#93000a",
-                        "primary": "#b71422",
-                        "on-tertiary-fixed-variant": "#3e4c00",
-                        "secondary-fixed-dim": "#b6c4ff",
-                        "tertiary-fixed-dim": "#b5d249",
-                        "on-primary-container": "#fffbff",
-                        "tertiary-container": "#677d00",
-                        "surface-container-highest": "#f2ecd9",
-                        "on-background": "#191c1d",
-                        "surface-variant": "#f2ecd9",
-                        "on-tertiary-fixed": "#171e00",
-                        "inverse-on-surface": "#f0f1f2",
-                        "primary-container": "#db3237",
-                        "secondary": "#0041c9",
-                        "surface": "#FFFDF5",
-                        "on-secondary-container": "#e4e7ff",
-                        "primary-fixed": "#ffdad7",
-                        "error": "#ba1a1a",
-                        "surface-container-lowest": "#FFFDF5",
-                        "error-container": "#ffdad6",
-                        "secondary-container": "#0356ff",
-                        "primary": "#b71422",
-                        "secondary": "#1a237e",
-                        "tertiary": "#b8860b",
-                        "accent": "#065f46",
                         "surface-container-low": "#FFF9F2",
+                        "surface-container-lowest": "#FFFDF5",
+                        "surface-container-highest": "#f2ecd9",
+                        "surface-variant": "#f2ecd9",
                         "surface": "#FFFDF7",
+                        "inverse-surface": "#2e3132",
+                        "inverse-on-surface": "#f0f1f2",
+                        "primary": "#b71422",
+                        "primary-container": "#db3237",
+                        "on-primary-container": "#fffbff",
+                        "primary-fixed": "#ffdad7",
+                        "secondary": "#1a237e",
+                        "secondary-container": "#0356ff",
+                        "on-secondary-container": "#e4e7ff",
+                        "secondary-fixed-dim": "#b6c4ff",
+                        "tertiary": "#b8860b",
+                        "tertiary-container": "#677d00",
+                        "tertiary-fixed-dim": "#b5d249",
+                        "on-tertiary-fixed": "#171e00",
+                        "on-tertiary-fixed-variant": "#3e4c00",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "accent": "#065f46",
                         "background": "#FFCC99",
                         "on-background": "#2D2424",
                         "on-surface": "#191c1d"
@@ -93,7 +88,7 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&display=swap');
 
         :root {
             --primary: #FF8C00;
@@ -173,19 +168,38 @@
         }
         .nav-link.active::after { width: 100%; }
 
-        /* Product Cards */
+        /* Product Cards - Premium Edition */
         .product-card {
-            background: var(--surface-light);
+            background: linear-gradient(145deg, #ffffff 0%, #faf9f7 100%);
             border-radius: 32px;
-            border: 1px solid rgba(0,0,0,0.02);
+            border: 1px solid rgba(255,255,255,0.8);
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.02),
+                0 2px 4px -1px rgba(0, 0, 0, 0.02),
+                0 20px 25px -5px rgba(153, 51, 0, 0.05);
+            contain: layout style paint;
+            will-change: transform;
+            position: relative;
         }
-        .dark .product-card { border-color: rgba(255,255,255,0.04); }
+        .product-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%, rgba(153,51,0,0.03) 100%);
+            pointer-events: none;
+            border-radius: 32px;
+        }
+        .dark .product-card { 
+            border-color: rgba(255,255,255,0.1);
+            background: linear-gradient(145deg, #ffffff 0%, #faf9f7 100%);
+        }
         .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-12px) scale(1.01);
+            box-shadow: 
+                0 25px 50px -12px rgba(153, 51, 0, 0.15),
+                0 12px 24px -8px rgba(0, 0, 0, 0.1);
         }
 
         /* Buttons */
@@ -227,6 +241,8 @@
             background: var(--primary);
             width: 0%;
             z-index: 1000;
+            contain: layout style;
+            will-change: width;
         }
 
         .aurora-blob {
@@ -235,8 +251,25 @@
             filter: blur(100px);
             opacity: 0.1;
             animation: blob 12s infinite;
+            will-change: transform;
         }
         @keyframes blob { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(30px,-30px) scale(1.1); } }
+
+        /* Mobile Performance Optimizations */
+        img { content-visibility: auto; }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .aurora-blob { animation: none; display: none; }
+            .product-card:hover { transform: none; }
+        }
 
         .hero-text-shadow {
             text-shadow: 0 4px 12px rgba(0,0,0,0.3);
@@ -260,11 +293,16 @@
                 display: flex;
                 justify-content: space-around;
                 padding: 12px 0 24px 0;
+                contain: layout style paint;
+                touch-action: manipulation;
             }
             .dark .mobile-bottom-nav { 
                 background: rgba(10,10,11,0.85); 
                 border-top: 1px solid rgba(255,255,255,0.05);
             }
+            /* Touch optimizations */
+            button, a, [onclick] { touch-action: manipulation; }
+            * { -webkit-tap-highlight-color: transparent; }
         }
         /* Premium Shop Enhancements */
         .premium-grain {
@@ -278,17 +316,6 @@
             opacity: 0.03;
             pointer-events: none;
             z-index: 0;
-        }
-        .product-card {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 0, 0, 0.03);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .product-card:hover {
-            transform: translateY(-12px);
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 30px 60px -12px rgba(153, 51, 0, 0.15);
         }
         .badge-rare {
             background: #993300;
@@ -359,7 +386,7 @@
     <div id="global-loader" class="fixed inset-0 z-[1000] bg-[#FFCC99] flex flex-col items-center justify-center transition-all duration-1000 ease-in-out">
         <div class="relative w-32 h-32 flex items-center justify-center mb-8">
             <div class="absolute inset-0 border-2 border-[#993300]/20 rounded-full animate-ping"></div>
-            <img src="./logo.png" class="w-20 h-20 relative z-10 animate-pulse" />
+            <img src="./mensrare-logo.png" class="w-20 h-20 relative z-10 animate-pulse" />
         </div>
         <span class="font-serif text-2xl uppercase tracking-[0.5em] text-[#993300] animate-pulse">Mensrare</span>
         <div class="mt-4 flex gap-1">
@@ -374,12 +401,8 @@
         <div id="scroll-progress"></div>
         <nav class="flex justify-between items-center px-4 md:px-6 w-full max-w-7xl mx-auto">
             <div class="flex items-center gap-4">
-                <button
-                    class="text-[#2D2424] hover:scale-110 transition-transform duration-200 active:scale-95">
-                    <span class="material-symbols-outlined">menu</span>
-                </button>
                 <div class="cursor-pointer flex items-center gap-2 md:gap-4 group" onclick="location.hash='#/'">
-                    <img src="./logo.png" alt="Mensrare Logo" class="logo-img transition-transform group-hover:scale-105" />
+                    <img src="./mensrare-logo.png" alt="Mensrare Logo" class="logo-img transition-transform group-hover:scale-105" />
                     <span class="hidden md:inline-block text-base md:text-xl font-black tracking-tighter text-[#2D2424] uppercase">Mensrare</span>
                 </div>
             </div>
@@ -423,7 +446,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
                 <div class="col-span-1 md:col-span-1 space-y-6">
                     <div class="flex items-center gap-3">
-                        <img src="./logo.png" class="w-12 h-12 filter brightness-0 invert" />
+                        <img src="./mensrare-logo.png" class="w-12 h-12 filter brightness-0 invert" />
                         <span class="text-2xl font-black uppercase tracking-tighter">Mensrare</span>
                     </div>
                     <p class="text-zinc-400 text-sm italic">"Redefining modern menswear with bold colors and impeccable craftsmanship."</p>
@@ -566,7 +589,7 @@
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter">
                         <div onclick="location.hash='#/shop'" class="md:col-span-8 relative rounded-3xl overflow-hidden group cursor-pointer border border-surface-container-highest">
-                            <img alt="Casual Tees" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="./images/casual_tee.png"/>
+                            <img alt="Casual Tees" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="./images/casual_tee.png" loading="lazy" decoding="async"/>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                             <div class="absolute bottom-8 left-8 text-white">
                                 <h3 class="text-3xl font-black uppercase tracking-tight">Casual Tees</h3>
@@ -575,7 +598,7 @@
                         </div>
                         <div class="md:col-span-4 flex flex-col gap-grid-gutter">
                             <div onclick="location.hash='#/shop'" class="flex-1 relative rounded-3xl overflow-hidden group cursor-pointer border border-surface-container-highest dark:border-zinc-800 h-[300px] md:h-auto">
-                                <img alt="Shirts" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="./images/shirt.png"/>
+                                <img alt="Shirts" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="./images/shirt.png" loading="lazy" decoding="async"/>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                                 <div class="absolute bottom-6 left-6 text-white">
                                     <h3 class="text-xl font-black uppercase tracking-tight">Shirts</h3>
@@ -589,7 +612,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter mt-grid-gutter">
                         <div class="md:col-span-4 flex flex-col gap-grid-gutter">
                             <div onclick="location.hash='#/shop'" class="flex-1 relative rounded-3xl overflow-hidden group cursor-pointer border border-surface-container-highest dark:border-zinc-800 h-[300px] md:h-auto">
-                                <img alt="Formal Pants" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&q=80"/>
+                                <img alt="Formal Pants" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&q=80" loading="lazy" decoding="async"/>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                                 <div class="absolute bottom-6 left-6 text-white">
                                     <h3 class="text-xl font-black uppercase tracking-tight">Formal Pants</h3>
@@ -598,7 +621,7 @@
                             </div>
                         </div>
                         <div onclick="location.hash='#/shop'" class="md:col-span-8 relative rounded-3xl overflow-hidden group cursor-pointer border border-surface-container-highest">
-                            <img alt="Jackets" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="./images/jacket.png"/>
+                            <img alt="Jackets" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="./images/jacket.png" loading="lazy" decoding="async"/>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                             <div class="absolute bottom-8 left-8 text-white">
                                 <h3 class="text-3xl font-black uppercase tracking-tight">Jackets</h3>
@@ -769,9 +792,6 @@
                                 <p class="text-zinc-500 dark:text-zinc-400">Manage your premium collections</p>
                             </div>
                             <div class="flex gap-4">
-                                <button onclick="seedDatabase()" class="bg-[#993300]/10 text-[#993300] px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-[#993300] hover:text-white transition-all flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-sm">refresh</span> Re-Seed Boutique
-                                </button>
                                 <button onclick="logoutAdmin()" class="text-zinc-400 hover:text-error transition-colors uppercase text-xs font-bold flex items-center gap-2">
                                     <span class="material-symbols-outlined text-sm">logout</span> Logout
                                 </button>
@@ -975,22 +995,37 @@
             const hasProducts = filteredProducts && filteredProducts.length > 0;
             const productGrid = hasProducts 
                 ? filteredProducts.map(p => `
-                    <div onclick="location.hash='#/product?id=${p.id}'" class="product-card group cursor-pointer overflow-hidden rounded-[32px] p-2">
-                        <div class="relative overflow-hidden rounded-[24px] aspect-[4/5] bg-white/50">
-                            <img src="${p.image_url || 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80'}" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"/>
-                            <div class="absolute top-4 left-4 z-10">
-                                <span class="badge-rare">Mensrare</span>
+                    <div onclick="location.hash='#/product?id=${p.id}'" class="product-card group cursor-pointer overflow-hidden rounded-[32px] p-3">
+                        <div class="relative overflow-hidden rounded-[28px] aspect-[4/5] bg-gradient-to-br from-white to-[#faf9f7]">
+                            <img src="${p.image_url || 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80'}" class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"/>
+                            
+                            <!-- Premium Badge -->
+                            <div class="absolute top-5 left-5 z-10">
+                                <span class="bg-[#993300] text-white text-[9px] font-black uppercase tracking-[0.15em] px-4 py-2 rounded-full shadow-lg shadow-[#993300]/30">Mensrare</span>
                             </div>
-                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 flex items-center justify-center">
-                                <span class="bg-white/90 backdrop-blur text-black text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">Quick View</span>
+                            
+                            <!-- Hover Overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#2D2424]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                            
+                            <!-- Quick View Button -->
+                            <div class="absolute bottom-5 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                                <span class="bg-white text-[#2D2424] text-[10px] font-black uppercase tracking-[0.2em] px-7 py-3 rounded-full shadow-xl whitespace-nowrap">Discover</span>
                             </div>
                         </div>
-                        <div class="p-4 md:p-6 text-center">
-                            <h3 class="font-serif text-lg md:text-xl mb-1 text-[#2D2424] opacity-90">${p.name}</h3>
-                            <div class="flex flex-col items-center gap-2">
-                                <span class="text-[10px] uppercase tracking-[0.2em] text-[#993300] font-black">${p.category || 'Limited Edition'}</span>
-                                <div class="h-px w-8 bg-[#993300]/20"></div>
-                                <span class="text-xl font-black text-[#993300]">₹${p.price}</span>
+                        
+                        <!-- Product Info -->
+                        <div class="p-5 md:p-7 text-center relative">
+                            <!-- Decorative Line -->
+                            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-[1px] bg-gradient-to-r from-transparent via-[#993300]/30 to-transparent"></div>
+                            
+                            <h3 class="font-serif text-lg md:text-xl mb-2 text-[#2D2424] tracking-wide">${p.name}</h3>
+                            <div class="flex flex-col items-center gap-3">
+                                <span class="text-[10px] uppercase tracking-[0.25em] text-[#993300]/80 font-semibold">${p.category || 'Limited Edition'}</span>
+                                <div class="flex items-center gap-2">
+                                    <div class="h-[2px] w-4 bg-[#993300]/20"></div>
+                                    <span class="text-2xl font-black text-[#993300] tracking-tight">₹${p.price}</span>
+                                    <div class="h-[2px] w-4 bg-[#993300]/20"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1002,41 +1037,46 @@
                    </div>`;
 
             return `
-                <main class="pt-[88px] pb-32 premium-grain">
-                    <div class="px-6 max-w-[1400px] mx-auto">
-                        <section class="py-12 md:py-32 text-center relative overflow-hidden">
+                <main class="pt-[88px] pb-32 relative overflow-hidden bg-[#FFCC99] dark:bg-[#FEB346]">
+                    <!-- Aurora Blobs -->
+                    <div class="aurora-blob aurora-blob-1" style="z-index:0"></div>
+                    <div class="aurora-blob aurora-blob-2" style="z-index:0"></div>
+                    
+                    <div class="px-6 max-w-[1400px] mx-auto relative z-10">
+                        <section class="py-16 md:py-32 text-center relative overflow-hidden">
                             <!-- Decorative Element -->
                             <div class="absolute top-0 left-1/2 -translate-x-1/2 opacity-[0.03] pointer-events-none select-none">
-                                <span class="text-[20vw] font-black uppercase tracking-tighter leading-none">RAT</span>
+                                <span class="text-[20vw] font-black uppercase tracking-tighter leading-none text-[#993300]">SHOP</span>
                             </div>
                             
                             <div class="relative z-10">
                                 <div class="inline-block mb-8">
-                                    <span class="text-[#993300] font-black tracking-[0.8em] uppercase text-[9px] mb-2 block">Couture Excellence</span>
-                                    <div class="h-[2px] w-12 bg-[#993300] mx-auto"></div>
+                                    <span class="inline-block text-[11px] font-black uppercase tracking-[0.3em] px-4 py-2 rounded-full bg-[#993300]/10 text-[#993300] mb-2">✦ Premium Collection</span>
                                 </div>
-                                <h2 class="font-serif text-7xl md:text-[120px] uppercase mb-4 leading-[0.85] tracking-tight">The<br/><span class="italic font-light lowercase text-[#993300]/80">Mensrare</span> House</h2>
-                                <p class="text-[#2D2424] font-medium max-w-lg mx-auto opacity-70 leading-relaxed text-sm md:text-base mt-8">Mensrare presents an evolution in menswear. Where traditional tailoring meets the vibrant energy of the modern streets.</p>
+                                <h2 class="font-serif text-5xl md:text-7xl uppercase mb-4 leading-[0.9] tracking-tight text-[#2D2424]">
+                                    The <span class="italic font-light lowercase text-[#993300]">Mensrare</span> House
+                                </h2>
+                                <p class="text-[#2D2424]/80 font-medium max-w-lg mx-auto leading-relaxed text-sm md:text-base mt-6">Curated menswear for the modern gentleman. Bold aesthetics meet timeless tailoring.</p>
                             </div>
                         </section>
                     </div>
 
-                    <section class="sticky top-[71px] z-[90] bg-[#FFCC99]/95 backdrop-blur-3xl py-8 border-y border-black/5 mb-20 shadow-sm transition-all duration-500" id="shop-nav-bar">
-                        <div class="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row justify-center items-center gap-8">
+                    <section class="sticky top-[71px] z-[90] bg-[#FFCC99]/95 dark:bg-[#FEB346]/95 backdrop-blur-2xl py-6 border-y border-[#993300]/10 mb-16 shadow-sm transition-all duration-500" id="shop-nav-bar">
+                        <div class="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row justify-center items-center gap-6">
                             <div class="flex overflow-x-auto w-full md:w-auto pb-1 md:pb-0 no-scrollbar gap-3 px-4 md:px-0">
                                 ${['All', 'Shirts', 'T-Shirts', 'Pants', 'Jackets', 'Jeans'].map(cat => `
                                     <button onclick="filterShop('${cat}')" 
-                                        class="flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm whitespace-nowrap transition-all ${activeCat === cat ? 'bg-primary text-white' : 'bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-300 hover:border-primary'}">
+                                        class="filter-btn flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm whitespace-nowrap transition-all duration-300 ${activeCat === cat ? 'bg-[#993300] text-white shadow-lg' : 'bg-white/80 dark:bg-white/80 border border-[#993300]/20 text-[#2D2424] hover:bg-white hover:border-[#993300]/40'}">
                                         ${cat}
                                     </button>
                                 `).join('')}
                             </div>
-                            <div class="text-sm font-label-caps dark:text-zinc-400">${filteredProducts?.length || 0} Items Found</div>
+                            <div class="text-sm font-medium text-[#993300] tracking-wider">${filteredProducts?.length || 0} Items</div>
                         </div>
                     </section>
 
-                    <div class="px-6 max-w-[1400px] mx-auto">
-                        <div class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-12 gap-y-12 md:gap-y-20 pt-8 md:pt-16">
+                    <div class="px-6 max-w-[1400px] mx-auto relative z-10">
+                        <div class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-8 gap-y-10 md:gap-y-16 pt-4 md:pt-8">
                             ${productGrid}
                         </div>
                     </div>
@@ -1250,7 +1290,7 @@
                             ${window.allProducts ? window.allProducts.slice(0, 4).map(rp => `
                                 <div onclick="location.hash='#/product?id=${rp.id}'" class="group cursor-pointer">
                                     <div class="aspect-[3/4] rounded-[40px] overflow-hidden bg-white/40 mb-8 shadow-sm border border-black/5">
-                                        <img src="${rp.image_url}" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
+                                        <img src="${rp.image_url}" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110" loading="lazy" decoding="async">
                                     </div>
                                     <div class="space-y-2 text-center md:text-left px-2">
                                         <h5 class="text-[11px] font-black uppercase tracking-widest text-[#2D2424] truncate">${rp.name}</h5>
@@ -1464,7 +1504,7 @@
             list.innerHTML = products.map(p => `
                 <div class="bg-surface dark:bg-zinc-800 p-6 rounded-2xl border border-zinc-100 dark:border-zinc-700 flex justify-between items-center">
                     <div class="flex items-center gap-4">
-                        <img src="${p.image_url}" class="w-12 h-12 rounded-lg object-cover">
+                        <img src="${p.image_url}" class="w-12 h-12 rounded-lg object-cover" loading="lazy" decoding="async">
                         <div>
                             <div class="font-bold dark:text-white">${p.name}</div>
                             <div class="text-sm text-zinc-400">₹${p.price} • ${p.category}</div>
@@ -1595,17 +1635,6 @@
             }
         }
 
-        // Preview handler for file upload
-        window.addEventListener('change', (e) => {
-            if (e.target.id === 'new-p-img') {
-                const status = document.getElementById('upload-status');
-                if (e.target.files[0]) {
-                    status.textContent = e.target.files[0].name;
-                    status.classList.add('text-primary');
-                }
-            }
-        });
-
         async function deleteProduct(id) {
             if (!confirm('Are you sure?')) return;
             const { error } = await supabaseClient.from('products').delete().eq('id', id);
@@ -1664,13 +1693,10 @@
         }
 
         async function addToCart(productId) {
-            console.log('Adding to cart, ID:', productId);
             try {
                 if (!supabaseClient) throw new Error('Supabase Client not initialized');
 
                 const products = await fetchSupabaseProducts();
-                console.log('Fetched products for cart check:', products);
-
                 if (!products) throw new Error('Could not fetch products from database');
                 
                 const product = products.find(p => p.id == productId); // Use == for flexible string/number matching
@@ -1783,14 +1809,14 @@
             container.innerHTML = `
                 <div class="mb-12">
                     <h1 class="font-display-xl text-5xl md:text-7xl text-on-background dark:text-white uppercase mb-4">Your Cart</h1>
-                    <p class="text-zinc-500 dark:text-zinc-400 font-medium">Review your selection of meticulously crafted shirts.</p>
+                    <p class="text-black dark:text-white font-black bg-[#993300]/20 dark:bg-[#cc7a00]/30 px-4 py-2 rounded-lg inline-block">Review your selection of meticulously crafted shirts.</p>
                 </div>
                 <div class="flex flex-col lg:flex-row gap-8">
                     <div class="flex-grow space-y-6">
                         ${cart.map(item => `
                             <div class="bg-white dark:bg-zinc-900/50 p-4 rounded-2xl border border-zinc-100 dark:border-zinc-800 flex flex-col md:flex-row gap-6">
                                 <div class="relative w-full md:w-32 h-48 md:h-40 rounded-xl overflow-hidden shrink-0">
-                                    <img src="${item.image_url}" class="w-full h-full object-cover">
+                                    <img src="${item.image_url}" class="w-full h-full object-cover" loading="lazy" decoding="async">
                                 </div>
                                 <div class="flex-grow flex flex-col justify-between py-1">
                                     <div class="flex justify-between items-start">
@@ -1980,22 +2006,36 @@
             });
         }
 
-        // Magnifier Logic
+        // Magnifier Logic - Optimized with RAF throttling
         function initMagnifier() {
             const container = document.getElementById('image-magnifier-container');
             const img = document.getElementById('main-product-image');
-            if (!container || !img) return;
+            if (!container || !img || window.matchMedia('(pointer: coarse)').matches) return;
+
+            let rafId = null;
+            let pendingEvent = null;
 
             container.addEventListener('mousemove', (e) => {
-                const rect = container.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / rect.width) * 100;
-                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                pendingEvent = e;
+                if (rafId) return;
                 
-                img.style.transformOrigin = `${x}% ${y}%`;
-                img.style.transform = 'scale(1.8)';
+                rafId = requestAnimationFrame(() => {
+                    if (pendingEvent) {
+                        const rect = container.getBoundingClientRect();
+                        const x = ((pendingEvent.clientX - rect.left) / rect.width) * 100;
+                        const y = ((pendingEvent.clientY - rect.top) / rect.height) * 100;
+                        img.style.transformOrigin = `${x}% ${y}%`;
+                        img.style.transform = 'scale(1.8)';
+                    }
+                    rafId = null;
+                });
             });
 
             container.addEventListener('mouseleave', () => {
+                if (rafId) {
+                    cancelAnimationFrame(rafId);
+                    rafId = null;
+                }
                 img.style.transform = 'scale(1)';
                 img.style.transformOrigin = 'center';
             });
@@ -2029,14 +2069,20 @@
             }, 800);
         });
 
-        // Scroll Progress Handler
+        // Scroll Progress Handler - Throttled for mobile
+        let scrollTicking = false;
         window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            const progress = document.getElementById("scroll-progress");
-            if (progress) progress.style.width = scrolled + "%";
-        });
+            if (scrollTicking) return;
+            scrollTicking = true;
+            requestAnimationFrame(() => {
+                const winScroll = window.scrollY || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = Math.min((winScroll / height) * 100, 100);
+                const progress = document.getElementById("scroll-progress");
+                if (progress) progress.style.width = scrolled + "%";
+                scrollTicking = false;
+            });
+        }, { passive: true });
     </script>
 
 </body>
