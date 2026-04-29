@@ -1853,6 +1853,52 @@
                                 </div>
                             </div>
                         `).join('')}
+
+                        <!-- Shipping Address Section -->
+                        <div class="bg-white dark:bg-zinc-900/50 p-6 md:p-8 rounded-3xl border border-zinc-100 dark:border-zinc-800 mt-8">
+                            <h3 class="text-xl font-bold mb-6 dark:text-white flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">local_shipping</span>
+                                Shipping Information
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div class="md:col-span-2">
+                                    <label class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1.5 block">Full Name</label>
+                                    <input type="text" id="checkout-fullname" placeholder="Enter your full name" class="w-full px-4 py-3.5 rounded-xl border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white outline-none focus:border-primary transition-all">
+                                </div>
+                                <div>
+                                    <label class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1.5 block">Phone Number</label>
+                                    <input type="tel" id="checkout-phone" placeholder="Mobile number" class="w-full px-4 py-3.5 rounded-xl border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white outline-none focus:border-primary transition-all">
+                                </div>
+                                <div>
+                                    <label class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1.5 block">Pincode</label>
+                                    <input type="text" id="checkout-pincode" placeholder="6-digit Pincode" class="w-full px-4 py-3.5 rounded-xl border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white outline-none focus:border-primary transition-all">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1.5 block">House / Flat / Hostel Name</label>
+                                    <input type="text" id="checkout-house" placeholder="House/Flat No, Building Name" class="w-full px-4 py-3.5 rounded-xl border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white outline-none focus:border-primary transition-all">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1.5 block">Street / Area / Landmark</label>
+                                    <input type="text" id="checkout-street" placeholder="Street Name, Area, Landmark" class="w-full px-4 py-3.5 rounded-xl border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white outline-none focus:border-primary transition-all">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1.5 block">Village</label>
+                                    <input type="text" id="checkout-village" placeholder="Village Name" class="w-full px-4 py-3.5 rounded-xl border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white outline-none focus:border-primary transition-all">
+                                </div>
+                                <div>
+                                    <label class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1.5 block">City / Subdistrict</label>
+                                    <input type="text" id="checkout-city" placeholder="City" class="w-full px-4 py-3.5 rounded-xl border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white outline-none focus:border-primary transition-all">
+                                </div>
+                                <div>
+                                    <label class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1.5 block">District</label>
+                                    <input type="text" id="checkout-district" placeholder="District" class="w-full px-4 py-3.5 rounded-xl border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white outline-none focus:border-primary transition-all">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1.5 block">State</label>
+                                    <input type="text" id="checkout-state" placeholder="State" class="w-full px-4 py-3.5 rounded-xl border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white outline-none focus:border-primary transition-all">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="lg:w-96">
                         <div class="bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-zinc-100 dark:border-zinc-800 shadow-xl sticky top-28">
@@ -1882,17 +1928,86 @@
                     </div>
                 </div>
             `;
+
+            // Restore address fields and add persistence
+            const savedAddress = JSON.parse(localStorage.getItem('mensrare_checkout_address') || '{}');
+            const addressFields = ['fullname', 'phone', 'house', 'street', 'village', 'city', 'district', 'state', 'pincode'];
+            
+            addressFields.forEach(field => {
+                const el = document.getElementById('checkout-' + field);
+                if (!el) return;
+                
+                if (savedAddress[field]) el.value = savedAddress[field];
+                
+                el.addEventListener('input', (e) => {
+                    const currentAddress = JSON.parse(localStorage.getItem('mensrare_checkout_address') || '{}');
+                    currentAddress[field] = e.target.value;
+                    localStorage.setItem('mensrare_checkout_address', JSON.stringify(currentAddress));
+                });
+            });
         }
 
         function checkoutViaWhatsApp() {
             if (cart.length === 0) return alert('Your cart is empty');
             
+            const fields = ['fullname', 'phone', 'house', 'street', 'village', 'city', 'district', 'state', 'pincode'];
+            const labels = {
+                fullname: 'Full Name',
+                phone: 'Phone Number',
+                house: 'House/Flat/Hostel Name',
+                street: 'Street/Area/Landmark',
+                village: 'Village',
+                city: 'City/Subdistrict',
+                district: 'District',
+                state: 'State',
+                pincode: 'Pincode'
+            };
+            
+            const address = {};
+            let missing = [];
+            let firstMissing = null;
+            fields.forEach(f => {
+                const el = document.getElementById('checkout-' + f);
+                const val = el?.value.trim();
+                if (!val) {
+                    missing.push(labels[f]);
+                    if (el) {
+                        el.classList.add('border-red-500');
+                        el.classList.remove('border-zinc-200', 'dark:border-zinc-700');
+                        if (!firstMissing) firstMissing = el;
+                    }
+                } else {
+                    if (el) {
+                        el.classList.remove('border-red-500');
+                        el.classList.add('border-zinc-200', 'dark:border-zinc-700');
+                    }
+                }
+                address[f] = val;
+            });
+            
+            if (missing.length > 0) {
+                if (firstMissing) firstMissing.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return alert('Please fill in all shipping details before proceeding to WhatsApp.');
+            }
+
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
             let message = "🛍️ *New Order from Mensrare Storefront*\n\n";
+            message += "👤 *Customer Details*\n";
+            message += `Name: ${address.fullname}\n`;
+            message += `Phone: ${address.phone}\n\n`;
+            
+            message += "📍 *Shipping Address*\n";
+            message += `${address.house}\n`;
+            message += `${address.street}\n`;
+            message += `${address.village}\n`;
+            message += `${address.city}, ${address.district}\n`;
+            message += `${address.state} - ${address.pincode}\n\n`;
+            
+            message += "🛒 *Order Summary*\n";
             cart.forEach((item, index) => {
                 message += `${index + 1}. *${item.name}*\n`;
-                message += `   Size: [${item.size || 'M'}] | Qty: ${item.quantity} | Total: ₹${item.price * item.quantity}\n`;
+                message += `   Size: [${item.size || 'M'}] | Qty: ${item.quantity} | ₹${item.price * item.quantity}\n`;
             });
             
             let discountAmountForMsg = 0;
