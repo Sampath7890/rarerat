@@ -1,13 +1,25 @@
-# Rare Rat Ecommerce
+MensRare Ecommerce Store
 
-Unified premium menswear storefront built as a static frontend with Vite.
+This repository contains a freelance ecommerce storefront built for a client.
+It is focused on a premium menswear shopping experience and is intended to be easy to run, review, and hand off.
+
+## Project Purpose
+
+- Build a branded online storefront for menswear products.
+- Support product browsing and client-facing UI presentation.
+- Keep setup simple for future developers and client delivery.
+
+## Tech Stack
+
+- HTML/CSS/JavaScript
+- Vite (development server and production build)
 
 ## Requirements
 
 - Node.js 18+
 - npm
 
-## Getting Started
+## Local Development
 
 1. Install dependencies:
 
@@ -15,27 +27,33 @@ Unified premium menswear storefront built as a static frontend with Vite.
    npm install
    ```
 
-2. Start the development server:
+2. Run the app locally:
 
    ```bash
    npm run dev
    ```
 
-3. Build for production:
+3. Create a production build:
 
    ```bash
    npm run build
    ```
 
-4. Preview the production build locally:
+4. Preview the production build:
 
    ```bash
    npm run preview
    ```
 
-## Project Structure
+## Key Files
 
-- `index.html` — main storefront page.
-- `images/` — product and hero imagery.
-- `fix_error.js` and `undo_reviews.js` — utility scripts.
+- `index.html` — primary storefront markup and layout.
+- `images/` — brand, product, and hero assets.
+- `fix_error.js` — maintenance helper script.
+- `undo_reviews.js` — utility script for review content changes.
 
+## Client Handoff Notes
+
+- This codebase is the working deliverable for the client ecommerce project.
+- Keep branding assets and product images in `images/` for consistency.
+- Run `npm run build` before final delivery updates.
